@@ -1,7 +1,7 @@
 * Improv-referee
 
 This is an android application to help play the part of the "Referee" in a type of improvisation comedy 
-known as "Match d'improvisation" (more information available in French on [[http://fr.wikipedia.org/wiki/Match_d'improvisation] [Wikipedia]] )
+known as "Match d'improvisation" (more information available in French on [[http://fr.wikipedia.org/wiki/Match_d'improvisation][Wikipedia]]. )
 
 The application should help : 
 - keeping the list of improvs for a game (title, category, type, number of players allowed..)
