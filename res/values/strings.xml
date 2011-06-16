@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, ImprovRefereeActivity!</string>
+    <string name="app_name">Improv Match Referee</string>
+    <string name="btnCaucus">Caucus</string>
+    <string name="btnImprov">Au jeu</string>
+</resources>

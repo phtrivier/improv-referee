@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+    <!--  FIXME(pht) get rid of the linear layout if vertical orientation can be provided to the table layout -->
+
+	<TableLayout android:layout_width="match_parent"
+		android:layout_height="fill_parent" android:id="@+id/tableLayout1">
+		
+		
+		<!--  A row to display the content of the improv -->		
+		<TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent"
+			android:layout_height="wrap_content">
+		
+		  <LinearLayout android:orientation="vertical" android:layout_width="fill_parent">
+            <TextView android:text="-" android:id="@+id/improvType"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="-" android:id="@+id/improvTitle"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="-" android:id="@+id/improvCategory"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="-" android:id="@+id/improvPlayerCount"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+            <TextView android:text="-" android:id="@+id/improvDuration"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+           </LinearLayout>
+		
+		</TableRow>
+		
+		<!--  A row for controls -->
+		<TableRow android:id="@+id/tableRow2" android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+             <Button android:id="@+id/btnCaucus"  android:text="@string/btnCaucus" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <!--  FIXME(pht) : use proper layout to make it look like something nice -->
+            <ProgressBar android:id="@+id/barTime" style="?android:attr/progressBarStyleHorizontal" android:layout_width="300px" android:layout_height="wrap_content"/>
+             <Button android:id="@+id/btnImprov" android:text="@string/btnImprov" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+		</TableRow>
+	
+	</TableLayout>
+</LinearLayout>

@@ -1,0 +1,16 @@
+* V0 (Referee activity)
+** Display the content of an improv (type, title, category, duration, playerlimit)
+** Add button to start caucus (25s)
+** Add button to start improv (duration of the improv)
+* V1 (ImprovList activity)
+** Load and display a list from .. wherever (the SD card ?)
+*** XML / YML / whatever is the easiest to load on an android device without external lib ;)
+** Move to referee activity when clicking on one
+* V2 (opening desired list)
+** Make it possible to browse to a list on the SD card ?
+* V3 (Improv's editor)
+** UI to enter the list (if makes sense, maybe it is easiest to do it from an editor outside ?)
+* V4 (improvements)
+** visual alerts when milestones of the improv are reached (2', 1', 30', 10')
+** variable durations for caucuses
+** UI Improvements to make the stuff lookable
