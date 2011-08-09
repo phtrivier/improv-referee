@@ -2,15 +2,11 @@ package org.bullecarree.improv.referee;
 
 import org.bullecarree.improv.model.Improv;
 import org.bullecarree.improv.model.ImprovType;
-import org.bullecarree.improv.referee.R;
-import org.bullecarree.improv.referee.R.id;
-import org.bullecarree.improv.referee.R.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,6 +17,10 @@ public class ImprovRefereeActivity extends Activity {
     
     private ProgressBar barTime;
 
+    private ProgressTimer caucusTimer;
+    
+    private ProgressTimer improvTimer;
+    
 
     /** Called when the activity is first created. */
     @Override
@@ -39,50 +39,61 @@ public class ImprovRefereeActivity extends Activity {
         
         loadImprov(improv0);
 
-        // Click handler (but start a background task to extends progress bar)
-        
         barTime = (ProgressBar) findViewById(R.id.barTime);
         
-        Button btnCaucus = (Button) findViewById(R.id.btnCaucus);
-        btnCaucus.setOnClickListener(onCaucusClick);
-    
-    }
-
-    private Handler caucusHandler = new Handler();
-    
-    private long caucusStartTime = 0;
-    
-    private final OnClickListener onCaucusClick = new OnClickListener() {
+        ProgressListener updateProgressBar = new ProgressListener() {
+            public void onTick(int progress, long durationMillis) {
+                barTime.setProgress(progress);
+                // TODO(pht) update a LABEL (the label of the progress bar ?)
+                // to indicate how much time has passed / is remaining...
+            };
+            
+        }; 
         
-        @Override
-        public void onClick(View v) {
-            barTime.setProgress(0);
-            caucusStartTime = SystemClock.uptimeMillis();
-            caucusHandler.removeCallbacks(updateCaucusTime);
-            caucusHandler.postDelayed(updateCaucusTime, 100);
-        }
-    };
-    
-    private Runnable updateCaucusTime = new Runnable() {
-        public void run() {
-            final long start = caucusStartTime;
-            final long now = SystemClock.uptimeMillis(); 
-            long millis =  now - start;
-            int seconds = (int) (millis / 1000);
+        caucusTimer = new ProgressTimer(25);
+        caucusTimer.addProgressListener(updateProgressBar);
 
-            // FIXME(pht) : make the duration of caucuses editable
-            int progress = 100 - (((25 - seconds) * 100) / 25);
-            
-            barTime.setProgress(progress);
-            
-            // Don't schedule anything if progress is finished
-            if (progress < 100) {
-                caucusHandler.postAtTime(this, now + 1000);
+        improvTimer = new ProgressTimer(improv0.getDuration());
+        improvTimer.addProgressListener(updateProgressBar);
+
+        // Set button to start the caucus ; each button
+        // should stop the other timer
+        final Button btnCaucus = (Button) findViewById(R.id.btnCaucus);
+        final Button btnImprov = (Button) findViewById(R.id.btnImprov);
+
+        btnCaucus.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                barTime.setProgress(0);
+                // It should not be possible to interupt a caucus, to restart
+                // it, unless I use the Kill button
+                if (!caucusTimer.isRunning() && !improvTimer.isRunning()) {
+                    btnCaucus.setEnabled(false);
+                    improvTimer.stop();
+                    caucusTimer.start();
+                }
             }
-        };
-    };
-    
-    
+        });
+
+        btnImprov.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                barTime.setProgress(0);
+                // To try : I should not be able to restart an improv that is restarted
+                // (unless I use the KILL button)
+                if (!improvTimer.isRunning()) {
+                    btnCaucus.setEnabled(false);
+                    caucusTimer.stop();
+                    improvTimer.start();
+                }
+            }
+        });
+
+        // TODO(pht) add a "Kill" button to stop all timers once and for all.
+        // TODO(pht) add a "Pause" button to pause whatever timer is available
+        
+    }
+     
     private void loadImprov(Improv improv) {
         // TODO(pht) write a "renderer" whose job will be to decide the content
         // of each string, and actually test it... 
