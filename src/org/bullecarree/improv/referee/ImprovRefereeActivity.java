@@ -1,12 +1,12 @@
 package org.bullecarree.improv.referee;
 
 import org.bullecarree.improv.model.Improv;
+import org.bullecarree.improv.model.ImprovRenderer;
 import org.bullecarree.improv.model.ImprovType;
+import org.bullecarree.improv.reader.ImprovFileReader;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -21,7 +21,10 @@ public class ImprovRefereeActivity extends Activity {
     
     private ProgressTimer improvTimer;
     
-
+    private Improv currentImprov = new Improv();
+    
+    private ImprovFileReader improvReader = null;
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,15 +32,17 @@ public class ImprovRefereeActivity extends Activity {
         setContentView(R.layout.main);
         
         /* Improv setting (to be replaced by loading stuff, etc..) */
-        Improv improv0 = new Improv();
+        /*
+        currentImprov.setType(ImprovType.COMPARED);
+        currentImprov.setTitle("Tant va la cruche à l'eau ...");
+        currentImprov.setPlayerCount(2);
+        currentImprov.setCategory("Roman-photo");
+        currentImprov.setDuration(140); // 2m 20s
+        */
+        improvReader = new ImprovFileReader(getBaseContext());
+        currentImprov = improvReader.readImprov();
         
-        improv0.setType(ImprovType.COMPARED);
-        improv0.setTitle("Tant va la cruche à l'eau ...");
-        improv0.setPlayerCount(2);
-        improv0.setCategory("Roman-photo");
-        improv0.setDuration(120);
-        
-        loadImprov(improv0);
+        loadImprov(currentImprov);
 
         barTime = (ProgressBar) findViewById(R.id.barTime);
         
@@ -53,7 +58,7 @@ public class ImprovRefereeActivity extends Activity {
         caucusTimer = new ProgressTimer(25);
         caucusTimer.addProgressListener(updateProgressBar);
 
-        improvTimer = new ProgressTimer(improv0.getDuration());
+        improvTimer = new ProgressTimer(currentImprov.getDuration());
         improvTimer.addProgressListener(updateProgressBar);
 
         // Set button to start the caucus ; each button
@@ -95,10 +100,20 @@ public class ImprovRefereeActivity extends Activity {
     }
      
     private void loadImprov(Improv improv) {
-        // TODO(pht) write a "renderer" whose job will be to decide the content
-        // of each string, and actually test it... 
+        ImprovRenderer renderer = new ImprovRenderer(currentImprov);
         TextView c = (TextView) findViewById(R.id.improvCategory);
-        c.setText(improv.getType().toString());
-        // Etc ... 
+        c.setText("Catégorie : " + renderer.getCategory());
+        
+        c = (TextView) findViewById(R.id.improvPlayerCount);
+        c.setText("Joueurs : " + renderer.getPlayerCount());
+        
+        c = (TextView) findViewById(R.id.improvType);
+        c.setText("Type :" + renderer.getType());
+        
+        c = (TextView) findViewById(R.id.improvTitle);
+        c.setText("Titre :" + renderer.getTitle());
+        
+        c = (TextView) findViewById(R.id.improvDuration);
+        c.setText("Durée :" + renderer.getDuration());
     }
 }
