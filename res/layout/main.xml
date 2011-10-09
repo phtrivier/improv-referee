@@ -6,14 +6,16 @@
     <!--  FIXME(pht) get rid of the linear layout if vertical orientation can be provided to the table layout -->
 
 	<TableLayout android:layout_width="match_parent"
-		android:layout_height="fill_parent" android:id="@+id/tableLayout1">
-		
+		android:layout_height="fill_parent" android:id="@+id/tableLayout1"
+		android:background="#ff0000">
 		
 		<!--  A row to display the content of the improv -->		
 		<TableRow android:id="@+id/tableRow1" android:layout_width="fill_parent"
-			android:layout_height="wrap_content">
+			android:layout_height="wrap_content"
+			android:background="#00ff00">
 		
-		  <LinearLayout android:orientation="vertical" android:layout_width="fill_parent">
+		  <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
+		  android:background="#00ffff">
             <TextView android:text="-" android:id="@+id/improvType"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
             <TextView android:text="-" android:id="@+id/improvTitle"
@@ -29,14 +31,14 @@
 		</TableRow>
 		
 		<!--  A row for controls -->
-		<TableRow android:id="@+id/tableRow2" android:layout_width="match_parent"
-			android:layout_height="wrap_content">
+		<TableRow android:id="@+id/tableRow2" android:layout_height="wrap_content" android:layout_width="match_parent" android:background="#0000ff">
 
              <Button android:id="@+id/btnCaucus"  android:text="@string/btnCaucus" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
             <!--  FIXME(pht) : use proper layout to make it look like something nice -->
-            <ProgressBar android:id="@+id/barTime" style="?android:attr/progressBarStyleHorizontal" android:layout_width="300px" android:layout_height="wrap_content"/>
-             <Button android:id="@+id/btnImprov" android:text="@string/btnImprov" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <ProgressBar android:id="@+id/barTime" style="?android:attr/progressBarStyleHorizontal" android:layout_width="wrap_content" android:layout_height="match_parent"/>
+            
+            <Button android:id="@+id/btnImprov" android:text="@string/btnImprov" android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
 		</TableRow>
 	
