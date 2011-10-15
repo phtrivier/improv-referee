@@ -42,9 +42,14 @@ public class ProgressTimer {
                 
                 int remainingS = (durationInSeconds - accumulatedSeconds);
                 
+                Log.d("time", "Duration ? " + durationInSeconds);
                 Log.d("time", "Remaining S : " + remainingS);
                 
-                int progress = 100 - (((remainingS) * 100) / durationInSeconds);
+                int proportion = (((remainingS) * 100) / durationInSeconds);
+                
+                Log.d("time", "Proportion elapsed ? " + proportion);
+                
+                int progress = 100 - proportion;
                 
                 for (ProgressListener listener : progressListeners) {
                     listener.onTick(progress, accumulatedTime);
@@ -59,6 +64,10 @@ public class ProgressTimer {
     };
     
     public ProgressTimer(int durationInSeconds) {
+        this.durationInSeconds = durationInSeconds;
+    }
+    
+    public void setDurationInSeconds(int durationInSeconds) {
         this.durationInSeconds = durationInSeconds;
     }
     

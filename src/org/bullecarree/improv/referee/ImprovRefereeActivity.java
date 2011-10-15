@@ -59,13 +59,15 @@ public class ImprovRefereeActivity extends Activity {
         }
 
         currentImprov = improvReader.nextImprov();
-        loadImprov(currentImprov);
-
+        
         configureTimers();
 
         configureTimerButtons();
 
         configureNavigation();
+
+        loadImprov(currentImprov);
+
     }
 
     private void configureTimers() {
@@ -246,6 +248,9 @@ public class ImprovRefereeActivity extends Activity {
 
         c = (TextView) findViewById(R.id.improvDuration);
         c.setText(renderer.getDuration());
+        
+        improvTimer.setDurationInSeconds(improv.getDuration());
+        
     }
 
     /**
