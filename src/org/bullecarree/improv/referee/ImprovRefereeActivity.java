@@ -1,5 +1,7 @@
 package org.bullecarree.improv.referee;
 
+import java.io.IOException;
+
 import org.bullecarree.improv.model.Improv;
 import org.bullecarree.improv.model.ImprovRenderer;
 import org.bullecarree.improv.model.ImprovType;
@@ -51,11 +53,24 @@ public class ImprovRefereeActivity extends Activity {
         renderer = new ImprovRenderer(getString(R.string.typeCompared),
                 getString(R.string.typeMixt), getString(R.string.unlimited), getString(R.string.categoryFree));
 
-        improvReader = new ImprovFileReader(getBaseContext());
-        currentImprov = improvReader.readImprov();
-
+        improvReader = new ImprovFileReader();
+        try {
+            improvReader.readImprovs();
+        } catch (IOException e) {
+            throw new RuntimeException("Error while parsing file" , e);
+        }
+        
+        currentImprov = improvReader.nextImprov();
         loadImprov(currentImprov);
 
+        configureTimers();
+
+        configureTimerButtons();
+
+        configureNavigation();
+    }
+
+    private void configureTimers() {
         barTimeProgress = (ProgressBar) findViewById(R.id.barTime);
         barTimeMessage = (TextView) findViewById(R.id.barTimeMessage);
 
@@ -87,7 +102,33 @@ public class ImprovRefereeActivity extends Activity {
 
         improvTimer = new ProgressTimer(currentImprov.getDuration());
         improvTimer.addProgressListener(updateProgressBar);
+    }
+    
+    private void configureNavigation() {
+        
+        final Button btnPrev = (Button) findViewById(R.id.btnPrevImprov);
+        final Button btnNext = (Button) findViewById(R.id.btnNextImprov);
+        
+        btnPrev.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               currentImprov = improvReader.previousImprov();
+               loadImprov(currentImprov);
+            }
+        });
 
+        btnNext.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               currentImprov = improvReader.nextImprov();
+               loadImprov(currentImprov);
+            }
+        });
+
+        
+    }
+
+    private void configureTimerButtons() {
         // Set button to start the caucus ; each button
         // should stop the other timer
         final Button btnCaucus = (Button) findViewById(R.id.btnCaucus);
@@ -171,9 +212,8 @@ public class ImprovRefereeActivity extends Activity {
                 state = State.NONE;
             }
         });
-
     }
-
+    
     private void loadImprov(Improv improv) {
         renderer.setImprov(improv);
         TextView c = (TextView) findViewById(R.id.improvCategory);

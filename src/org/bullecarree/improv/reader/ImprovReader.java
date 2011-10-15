@@ -16,7 +16,7 @@ public class ImprovReader {
     }
     
     public Improv readLine(String line) {
-        Log.d("About to read line : ", line);
+        Log.d("improv", "About to read line : " + line);
         
         Improv res = new Improv();
         
@@ -46,6 +46,7 @@ public class ImprovReader {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            res = null;
         }
 
         return res;
