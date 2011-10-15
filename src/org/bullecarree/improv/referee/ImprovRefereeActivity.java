@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -47,6 +48,9 @@ public class ImprovRefereeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        // Disable screen saver
+        getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
         renderer = new ImprovRenderer(getString(R.string.typeCompared),
                 getString(R.string.typeMixt), getString(R.string.unlimited),
                 getString(R.string.categoryFree));
