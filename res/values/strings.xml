@@ -10,12 +10,12 @@
     <string name="btnNextImprov">Suivante</string>
     <string name="titleCategory">Catégorie</string>
     <string name="titleDuration">Durée</string>
-    <string name="titlePlayerCount">Nb. de joueurs</string>
-    <string name="titleTitle">Nb. de joueurs</string>
+    <string name="titlePlayerCount">Joueurs</string>
+    <string name="titleTitle">Thème</string>
     <string name="titleType">Type</string>
     <string name="typeCompared">Comparée</string>
     <string name="typeMixt">Mixte</string>
-    <string name="unlimited">Illimité</string>
+    <string name="unlimited">Ill.</string>
     <string name="categoryFree">Libre</string>
     
 </resources>

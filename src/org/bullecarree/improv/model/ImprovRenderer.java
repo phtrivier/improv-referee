@@ -33,7 +33,7 @@ public class ImprovRenderer {
     
     public String getCategory() {
         String res = improv.getCategory();
-        if (res == null || res == "") {
+        if (res == null || "".equals(res)) {
             res = categoryFree;
         }
         return res;

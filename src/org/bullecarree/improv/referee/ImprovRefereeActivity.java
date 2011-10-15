@@ -145,6 +145,7 @@ public class ImprovRefereeActivity extends Activity {
                     btnCaucus.setEnabled(true);
                 }
                 btnImprov.setEnabled(true);
+                btnPause.setEnabled(false);
                 caucusTimer.stop();
                 improvTimer.stop();
                 if (state == State.GAME) {
@@ -176,21 +177,18 @@ public class ImprovRefereeActivity extends Activity {
     private void loadImprov(Improv improv) {
         renderer.setImprov(improv);
         TextView c = (TextView) findViewById(R.id.improvCategory);
-        c.setText(getString(R.string.titleCategory) + " : "
-                + renderer.getCategory());
+        c.setText(renderer.getCategory());
 
         c = (TextView) findViewById(R.id.improvPlayerCount);
-        c.setText(getString(R.string.titlePlayerCount) + " : "
-                + renderer.getPlayerCount());
+        c.setText(renderer.getPlayerCount());
 
         c = (TextView) findViewById(R.id.improvType);
-        c.setText(getString(R.string.titleType) + " : " + renderer.getType());
+        c.setText(renderer.getType());
 
         c = (TextView) findViewById(R.id.improvTitle);
-        c.setText(getString(R.string.titleType) + " : " + renderer.getTitle());
+        c.setText(renderer.getTitle());
 
         c = (TextView) findViewById(R.id.improvDuration);
-        c.setText(getString(R.string.titleDuration) + " : "
-                + renderer.getDuration());
+        c.setText(renderer.getDuration());
     }
 }

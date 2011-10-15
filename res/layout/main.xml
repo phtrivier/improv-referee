@@ -34,15 +34,16 @@
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="wrap_content" android:layout_height="match_parent"
 			android:gravity="center" android:layout_weight="1">
+			
 			<TextView android:text="-" android:id="@+id/improvType"
-				android:layout_weight="1" android:gravity="center"
-				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+				android:layout_weight="1" style="@style/Font2" android:layout_width="wrap_content"
+				android:layout_height="wrap_content"></TextView>
 
 			<View android:layout_width="fill_parent" android:layout_height="1px"
 				android:background="#FF909090" />
 
 			<TextView android:text="-" android:id="@+id/improvPlayerCount"
-				android:layout_weight="1" android:gravity="center"
+				style="@style/Font2" android:layout_weight="1" android:gravity="center"
 
 				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
@@ -50,7 +51,7 @@
 				android:background="#FF909090" />
 
 			<TextView android:text="-" android:id="@+id/improvDuration"
-				android:layout_weight="1" android:gravity="center"
+				style="@style/Font2" android:layout_weight="1" android:gravity="center"
 
 				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 		</LinearLayout>
@@ -61,11 +62,10 @@
 
 		<LinearLayout android:orientation="vertical"
 			android:layout_width="wrap_content" android:layout_height="match_parent"
-			android:gravity="center" android:layout_weight="2">
+			android:gravity="center" android:layout_weight="1">
 
 			<TextView android:text="-" android:id="@+id/improvTitle"
-				android:layout_weight="1" android:gravity="center"
-
+				android:layout_weight="2" android:gravity="center" style="@style/Font1"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
 			<View android:layout_width="fill_parent" android:layout_height="1px"
@@ -74,7 +74,7 @@
 
 
 			<TextView android:text="-" android:id="@+id/improvCategory"
-				android:gravity="center" android:layout_weight="1"
+				android:gravity="center" android:layout_weight="1" style="@style/Font1"
 				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 		</LinearLayout>
 
@@ -94,35 +94,29 @@
 			<Button android:id="@+id/btnCaucus" android:text="@string/btnCaucus"
 				android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-            <Button android:id="@+id/btnImprov" android:text="@string/btnImprov"
-                android:layout_width="match_parent" android:layout_height="wrap_content" />
+			<Button android:id="@+id/btnImprov" android:text="@string/btnImprov"
+				android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-            <LinearLayout 
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-            
-	            <ProgressBar android:id="@+id/barTime"
-	                android:paddingTop="2dp" android:paddingBottom="6dp"
-	                style="?android:attr/progressBarStyleHorizontal"
-	                android:layout_height="wrap_content"
-	                android:layout_width="match_parent"/>
-	    
-	           <TextView android:id="@+id/barTimeMessage"
-	               android:layout_width="match_parent"
-	               android:layout_height="wrap_content"
-	               android:text="-"
-                   android:textColor="#000000"
-	               android:gravity="center"/>
-                
-            </LinearLayout>
-            
-            <Button android:id="@+id/btnPause" android:text="@string/btnPause"
-                android:layout_width="match_parent" android:layout_height="wrap_content" />
-			
+			<LinearLayout android:layout_width="wrap_content"
+				android:layout_height="match_parent" android:orientation="vertical">
+
+				<ProgressBar android:id="@+id/barTime"
+					android:paddingTop="2dp" android:paddingBottom="6dp"
+					style="?android:attr/progressBarStyleHorizontal"
+					android:layout_height="wrap_content" android:layout_width="match_parent" />
+
+				<TextView android:id="@+id/barTimeMessage"
+					android:layout_width="match_parent" android:layout_height="wrap_content"
+					android:text="-" android:textColor="#000000" android:gravity="center" />
+
+			</LinearLayout>
+
+			<Button android:id="@+id/btnPause" android:text="@string/btnPause"
+				android:layout_width="match_parent" android:layout_height="wrap_content" />
+
 			<Button android:id="@+id/btnReset" android:text="@string/btnReset"
-                android:layout_width="match_parent" android:layout_height="wrap_content" />
-            	
+				android:layout_width="match_parent" android:layout_height="wrap_content" />
+
 		</TableRow>
 
 	</TableLayout>
