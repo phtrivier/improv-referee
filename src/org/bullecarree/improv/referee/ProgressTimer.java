@@ -5,12 +5,15 @@ import java.util.List;
 
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 
 public class ProgressTimer {
     private Handler progressHandler = new Handler();
     
-    private long progressStartTime = 0;
+    private long referenceTime = 0;
 
+    private long accumulatedTime = 0;
+    
     private int durationInSeconds;
     
     private List<ProgressListener> progressListeners = new ArrayList<ProgressListener>();
@@ -20,15 +23,31 @@ public class ProgressTimer {
     private Runnable updateProgressTime = new Runnable() {
         public void run() {
             if (running) {
-                final long start = progressStartTime;
-                final long now = SystemClock.uptimeMillis(); 
+                final long start = referenceTime;
+                final long now = SystemClock.uptimeMillis();
                 long millis =  now - start;
-                int seconds = (int) (millis / 1000);
+                
+                referenceTime = now;
+                
+                accumulatedTime = accumulatedTime + millis;
+
+                Log.d("time", "------------------------------------------");
+                
+                Log.d("time", "Accumulated time MS : " + accumulatedTime);
+                
+                int accumulatedSeconds = (int) (accumulatedTime / 1000);
     
-                int progress = 100 - (((durationInSeconds - seconds) * 100) / durationInSeconds);
+                Log.d("time", "Accumulated S : " + accumulatedSeconds);
+                Log.d("time", "Duration S : " + durationInSeconds);
+                
+                int remainingS = (durationInSeconds - accumulatedSeconds);
+                
+                Log.d("time", "Remaining S : " + remainingS);
+                
+                int progress = 100 - (((remainingS) * 100) / durationInSeconds);
                 
                 for (ProgressListener listener : progressListeners) {
-                    listener.onTick(progress, millis);
+                    listener.onTick(progress, accumulatedTime);
                 }
                 
                 // Don't schedule anything if progress is finished
@@ -44,14 +63,16 @@ public class ProgressTimer {
     }
     
     public void start() {
-        progressStartTime = SystemClock.uptimeMillis();
+        referenceTime = SystemClock.uptimeMillis();
+        accumulatedTime = 0;
         progressHandler.removeCallbacks(updateProgressTime);
         progressHandler.postDelayed(updateProgressTime, 100);
         running = true;
     }
     
     public void reset() {
-        progressStartTime = 0;
+        referenceTime = 0;
+        accumulatedTime = 0;
         progressHandler.removeCallbacks(updateProgressTime);
         running = false;
     }
@@ -59,7 +80,7 @@ public class ProgressTimer {
     // TODO implement pause properly
     
     public void resume() {
-        progressStartTime = SystemClock.uptimeMillis();
+        referenceTime = SystemClock.uptimeMillis();
         progressHandler.removeCallbacks(updateProgressTime);
         progressHandler.postDelayed(updateProgressTime, 100);
         running = true;

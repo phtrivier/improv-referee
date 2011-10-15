@@ -32,6 +32,16 @@ public class ImprovRefereeActivity extends Activity {
 
     private TextView barTimeMessage;
 
+    private enum State {
+        NONE,
+        CAUCUS,
+        CAUCUS_PAUSED,
+        GAME,
+        GAME_PAUSED
+    };
+    
+    private State state = State.NONE;
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +75,7 @@ public class ImprovRefereeActivity extends Activity {
                         "Duration millis : " + String.valueOf(durationMillis));
                 Log.d("rpout", "Remaining ms : " + remainingMs);
                 int remainingS = (int) remainingMs / 1000;
-                Log.d("rpout", "Remaining s : " + remainingS);
+                Log.d("prout", "Remaining s : " + remainingS);
 
                 barTimeMessage.setText(renderer.displayTime(remainingS));
             };
@@ -82,53 +92,84 @@ public class ImprovRefereeActivity extends Activity {
         // should stop the other timer
         final Button btnCaucus = (Button) findViewById(R.id.btnCaucus);
         final Button btnImprov = (Button) findViewById(R.id.btnImprov);
+        final Button btnPause = (Button) findViewById(R.id.btnPause);
         final Button btnReset = (Button) findViewById(R.id.btnReset);
 
+        btnPause.setEnabled(false);
+        btnReset.setEnabled(false);
+        
         btnCaucus.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                barTimeProgress.setProgress(0);
-                // It should not be possible to interupt a caucus, to restart
-                // it, unless I use the Kill button
-                if (!caucusTimer.isRunning() && !improvTimer.isRunning()) {
-                    btnCaucus.setEnabled(false);
-                    improvTimer.stop();
+                btnCaucus.setEnabled(false);
+                btnImprov.setEnabled(false);
+                btnPause.setEnabled(true);
+                btnReset.setEnabled(true);
+                improvTimer.stop();
+                if (state == State.NONE) {
+                    barTimeProgress.setProgress(0);
+                    barTimeMessage.setText(renderer.displayTime((int) CAUCUS_DURATION_MS / 1000));
                     caucusTimer.start();
+                } else if (state == State.CAUCUS_PAUSED) {
+                    caucusTimer.resume();
                 }
+                state = State.CAUCUS;
+                
             }
         });
 
         btnImprov.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (improvTimer.isRunning()) {
-                    btnCaucus.setEnabled(false);
-                    improvTimer.stop();
-                    btnImprov.setText(getString(R.string.btnImprov));
-                } else {
-                    btnCaucus.setEnabled(false);
-                    btnImprov.setText(getString(R.string.btnPause));
+                btnCaucus.setEnabled(false);
+                btnImprov.setEnabled(false);
+                btnPause.setEnabled(true);
+                btnReset.setEnabled(true);
+                
+                if (state == State.NONE || state == State.CAUCUS || state == State.CAUCUS_PAUSED) {
                     barTimeProgress.setProgress(0);
+                    barTimeMessage.setText(renderer.displayTime(currentImprov.getDuration()));
                     caucusTimer.stop();
                     improvTimer.start();
+                } else if (state == State.GAME_PAUSED) {
+                    improvTimer.resume();
                 }
+                state = State.GAME;
             }
         });
 
+        btnPause.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (state == State.CAUCUS) {
+                    btnCaucus.setEnabled(true);
+                }
+                btnImprov.setEnabled(true);
+                caucusTimer.stop();
+                improvTimer.stop();
+                if (state == State.GAME) {
+                    state = State.GAME_PAUSED;
+                } else if (state == State.CAUCUS){
+                    state = State.CAUCUS_PAUSED;
+                }
+            }
+        });
+        
         btnReset.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                btnCaucus.setEnabled(true);
+                btnImprov.setEnabled(true);
+                btnPause.setEnabled(false);
+                btnReset.setEnabled(false);
                 barTimeProgress.setProgress(0);
-                barTimeMessage.setText(renderer.displayTime(currentImprov
-                        .getDuration()));
-                btnImprov.setText(getString(R.string.btnImprov));
+                barTimeMessage.setText("-");
+                caucusTimer.reset();
                 improvTimer.reset();
+                state = State.NONE;
             }
         });
-
-        // TODO(pht) add a "Kill" button to stop all timers once and for all.
-        // TODO(pht) add a "Pause" button to pause whatever timer is available
 
     }
 

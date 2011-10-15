@@ -83,7 +83,7 @@
 
 	<TableLayout android:layout_width="match_parent"
 		android:id="@+id/tableLayout1" android:layout_height="wrap_content"
-		android:layout_weight="0" android:stretchColumns="1"
+		android:layout_weight="0" android:stretchColumns="2"
 		android:background="#E6418D">
 
 		<!-- A row for controls -->
@@ -93,6 +93,9 @@
 
 			<Button android:id="@+id/btnCaucus" android:text="@string/btnCaucus"
 				android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+            <Button android:id="@+id/btnImprov" android:text="@string/btnImprov"
+                android:layout_width="match_parent" android:layout_height="wrap_content" />
 
             <LinearLayout 
                 android:layout_width="wrap_content"
@@ -114,8 +117,8 @@
                 
             </LinearLayout>
             
-			<Button android:id="@+id/btnImprov" android:text="@string/btnImprov"
-				android:layout_width="match_parent" android:layout_height="wrap_content" />
+            <Button android:id="@+id/btnPause" android:text="@string/btnPause"
+                android:layout_width="match_parent" android:layout_height="wrap_content" />
 			
 			<Button android:id="@+id/btnReset" android:text="@string/btnReset"
                 android:layout_width="match_parent" android:layout_height="wrap_content" />
