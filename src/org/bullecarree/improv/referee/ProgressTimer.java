@@ -50,6 +50,21 @@ public class ProgressTimer {
         running = true;
     }
     
+    public void reset() {
+        progressStartTime = 0;
+        progressHandler.removeCallbacks(updateProgressTime);
+        running = false;
+    }
+    
+    // TODO implement pause properly
+    
+    public void resume() {
+        progressStartTime = SystemClock.uptimeMillis();
+        progressHandler.removeCallbacks(updateProgressTime);
+        progressHandler.postDelayed(updateProgressTime, 100);
+        running = true;
+    }
+    
     public void stop() {
         running = false;
     }

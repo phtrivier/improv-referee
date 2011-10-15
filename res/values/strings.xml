@@ -4,7 +4,18 @@
     <string name="app_name">Improv Match Referee</string>
     <string name="btnCaucus">Caucus</string>
     <string name="btnImprov">Au jeu</string>
+    <string name="btnPause">Pause</string>
+    <string name="btnReset">R.a.z.</string>
     <string name="btnPrevImprov">Précédente</string>
     <string name="btnNextImprov">Suivante</string>
+    <string name="titleCategory">Catégorie</string>
+    <string name="titleDuration">Durée</string>
+    <string name="titlePlayerCount">Nb. de joueurs</string>
+    <string name="titleTitle">Nb. de joueurs</string>
+    <string name="titleType">Type</string>
+    <string name="typeCompared">Comparée</string>
+    <string name="typeMixt">Mixte</string>
+    <string name="unlimited">Illimité</string>
+    <string name="categoryFree">Libre</string>
     
 </resources>
