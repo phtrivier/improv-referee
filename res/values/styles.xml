@@ -4,7 +4,7 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">normal</item>
-        <item name="android:textSize">6pt</item>
+        <item name="android:textSize">8pt</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginRight">10px</item>
         <item name="android:layout_marginLeft">10px</item>
@@ -15,7 +15,7 @@
         <item name="android:textColor">#ffffff</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">normal</item>
-        <item name="android:textSize">8pt</item>
+        <item name="android:textSize">10pt</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginRight">5px</item>
         <item name="android:layout_marginLeft">5px</item>
