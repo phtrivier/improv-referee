@@ -8,6 +8,7 @@ import org.bullecarree.improv.model.ImprovType;
 import org.bullecarree.improv.reader.ImprovFileReader;
 
 import android.app.Activity;
+import android.content.IntentSender.OnFinished;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,15 +36,11 @@ public class ImprovRefereeActivity extends Activity {
     private TextView barTimeMessage;
 
     private enum State {
-        NONE,
-        CAUCUS,
-        CAUCUS_PAUSED,
-        GAME,
-        GAME_PAUSED
+        NONE, CAUCUS, CAUCUS_PAUSED, GAME, GAME_PAUSED
     };
-    
+
     private State state = State.NONE;
-    
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,15 +48,16 @@ public class ImprovRefereeActivity extends Activity {
         setContentView(R.layout.main);
 
         renderer = new ImprovRenderer(getString(R.string.typeCompared),
-                getString(R.string.typeMixt), getString(R.string.unlimited), getString(R.string.categoryFree));
+                getString(R.string.typeMixt), getString(R.string.unlimited),
+                getString(R.string.categoryFree));
 
         improvReader = new ImprovFileReader();
         try {
             improvReader.readImprovs();
         } catch (IOException e) {
-            throw new RuntimeException("Error while parsing file" , e);
+            throw new RuntimeException("Error while parsing file", e);
         }
-        
+
         currentImprov = improvReader.nextImprov();
         loadImprov(currentImprov);
 
@@ -103,29 +101,28 @@ public class ImprovRefereeActivity extends Activity {
         improvTimer = new ProgressTimer(currentImprov.getDuration());
         improvTimer.addProgressListener(updateProgressBar);
     }
-    
+
     private void configureNavigation() {
-        
+
         final Button btnPrev = (Button) findViewById(R.id.btnPrevImprov);
         final Button btnNext = (Button) findViewById(R.id.btnNextImprov);
-        
+
         btnPrev.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               currentImprov = improvReader.previousImprov();
-               loadImprov(currentImprov);
+                currentImprov = improvReader.previousImprov();
+                loadImprov(currentImprov);
             }
         });
 
         btnNext.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-               currentImprov = improvReader.nextImprov();
-               loadImprov(currentImprov);
+                currentImprov = improvReader.nextImprov();
+                loadImprov(currentImprov);
             }
         });
 
-        
     }
 
     private void configureTimerButtons() {
@@ -138,7 +135,7 @@ public class ImprovRefereeActivity extends Activity {
 
         btnPause.setEnabled(false);
         btnReset.setEnabled(false);
-        
+
         btnCaucus.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,13 +146,14 @@ public class ImprovRefereeActivity extends Activity {
                 improvTimer.stop();
                 if (state == State.NONE) {
                     barTimeProgress.setProgress(0);
-                    barTimeMessage.setText(renderer.displayTime((int) CAUCUS_DURATION_MS / 1000));
+                    barTimeMessage.setText(renderer
+                            .displayTime((int) CAUCUS_DURATION_MS / 1000));
                     caucusTimer.start();
                 } else if (state == State.CAUCUS_PAUSED) {
                     caucusTimer.resume();
                 }
                 state = State.CAUCUS;
-                
+
             }
         });
 
@@ -166,10 +164,12 @@ public class ImprovRefereeActivity extends Activity {
                 btnImprov.setEnabled(false);
                 btnPause.setEnabled(true);
                 btnReset.setEnabled(true);
-                
-                if (state == State.NONE || state == State.CAUCUS || state == State.CAUCUS_PAUSED) {
+
+                if (state == State.NONE || state == State.CAUCUS
+                        || state == State.CAUCUS_PAUSED) {
                     barTimeProgress.setProgress(0);
-                    barTimeMessage.setText(renderer.displayTime(currentImprov.getDuration()));
+                    barTimeMessage.setText(renderer.displayTime(currentImprov
+                            .getDuration()));
                     caucusTimer.stop();
                     improvTimer.start();
                 } else if (state == State.GAME_PAUSED) {
@@ -191,12 +191,12 @@ public class ImprovRefereeActivity extends Activity {
                 improvTimer.stop();
                 if (state == State.GAME) {
                     state = State.GAME_PAUSED;
-                } else if (state == State.CAUCUS){
+                } else if (state == State.CAUCUS) {
                     state = State.CAUCUS_PAUSED;
                 }
             }
         });
-        
+
         btnReset.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -213,7 +213,7 @@ public class ImprovRefereeActivity extends Activity {
             }
         });
     }
-    
+
     private void loadImprov(Improv improv) {
         renderer.setImprov(improv);
         TextView c = (TextView) findViewById(R.id.improvCategory);
@@ -231,4 +231,56 @@ public class ImprovRefereeActivity extends Activity {
         c = (TextView) findViewById(R.id.improvDuration);
         c.setText(renderer.getDuration());
     }
+
+    /**
+     * The 'pause' callback of the activity ; this is used when you navigate
+     * from a place to another
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopAllTheClocks();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopAllTheClocks();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopAllTheClocks();
+    }
+
+    /**
+     * The 'resume' callback of the activity. Used when navigating back here.
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        restartAllTheClocks();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        restartAllTheClocks();
+    }
+
+    private void stopAllTheClocks() {
+        improvTimer.stop();
+        caucusTimer.stop();
+    }
+
+    private void restartAllTheClocks() {
+        // A timer probably has to be resumed
+        if (state == State.CAUCUS) {
+            caucusTimer.resume();
+        } else if (state == State.GAME) {
+            improvTimer.resume();
+        }
+    }
+
 }
