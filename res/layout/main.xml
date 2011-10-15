@@ -15,11 +15,15 @@
 
 			<Button android:id="@+id/btnPrevImprov" android:text="@string/btnPrevImprov"
 				android:layout_weight="2" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
+				android:textSize="6pt"
+				android:layout_height="60px"
+				 />
 
 			<Button android:id="@+id/btnNextImprov" android:text="@string/btnNextImprov"
 				android:layout_weight="2" android:layout_width="wrap_content"
-				android:layout_height="wrap_content" />
+				android:textSize="6pt"
+                android:layout_height="60px"
+                 />
 
 		</TableRow>
 

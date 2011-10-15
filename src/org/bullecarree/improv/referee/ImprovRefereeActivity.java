@@ -125,6 +125,13 @@ public class ImprovRefereeActivity extends Activity {
 
     }
 
+    private void enableNavigation(boolean enabled) {
+        final Button btnPrev = (Button) findViewById(R.id.btnPrevImprov);
+        final Button btnNext = (Button) findViewById(R.id.btnNextImprov);
+        btnPrev.setEnabled(enabled);
+        btnNext.setEnabled(enabled);
+    }
+    
     private void configureTimerButtons() {
         // Set button to start the caucus ; each button
         // should stop the other timer
@@ -143,6 +150,9 @@ public class ImprovRefereeActivity extends Activity {
                 btnImprov.setEnabled(false);
                 btnPause.setEnabled(true);
                 btnReset.setEnabled(true);
+                
+                enableNavigation(false);
+                
                 improvTimer.stop();
                 if (state == State.NONE) {
                     barTimeProgress.setProgress(0);
@@ -165,6 +175,8 @@ public class ImprovRefereeActivity extends Activity {
                 btnPause.setEnabled(true);
                 btnReset.setEnabled(true);
 
+                enableNavigation(false);
+                
                 if (state == State.NONE || state == State.CAUCUS
                         || state == State.CAUCUS_PAUSED) {
                     barTimeProgress.setProgress(0);
@@ -187,6 +199,9 @@ public class ImprovRefereeActivity extends Activity {
                 }
                 btnImprov.setEnabled(true);
                 btnPause.setEnabled(false);
+                
+                enableNavigation(false);
+                
                 caucusTimer.stop();
                 improvTimer.stop();
                 if (state == State.GAME) {
@@ -209,6 +224,7 @@ public class ImprovRefereeActivity extends Activity {
                 barTimeMessage.setText("-");
                 caucusTimer.reset();
                 improvTimer.reset();
+                enableNavigation(true);
                 state = State.NONE;
             }
         });

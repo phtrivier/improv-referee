@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class ImprovFileReader {
 
-    private static final String CSV_FILE = "/improv/improvs.csv";
+    private static final String CSV_FILE = "/Android/improv/improvs.csv";
 
     BufferedReader bufferedReader;
 
@@ -39,9 +39,14 @@ public class ImprovFileReader {
         // Parse it as a CSV file. (Keep whatever is needed in memory)
         // Keep index of the read line
 
+        String state = Environment.getExternalStorageState();
+        Log.d("improv", "External storage state " + state);
+        
+        Log.d("improv", "External storage dir : " + Environment.getExternalStorageDirectory());
+        
         File f = new File(Environment.getExternalStorageDirectory(), CSV_FILE);
         if (f == null || !f.exists()) {
-            Log.e("improv", "file does not exists, looked for " + CSV_FILE);
+            Log.e("improv", "file does not exists, looked for " + CSV_FILE + " in " + Environment.getExternalStorageDirectory());
             throw new RuntimeException("File " + CSV_FILE + " does not exists");
         }
 
