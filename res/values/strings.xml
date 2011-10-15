@@ -4,4 +4,7 @@
     <string name="app_name">Improv Match Referee</string>
     <string name="btnCaucus">Caucus</string>
     <string name="btnImprov">Au jeu</string>
+    <string name="btnPrevImprov">Précédente</string>
+    <string name="btnNextImprov">Suivante</string>
+    
 </resources>

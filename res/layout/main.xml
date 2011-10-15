@@ -3,49 +3,107 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-   		
-	  <LinearLayout android:orientation="vertical" 
-	  android:layout_width="match_parent"
-	  android:layout_height="wrap_content"
-	  android:layout_weight="2"
-	  android:background="#00ff00">
-           <TextView android:text="-" android:id="@+id/improvType"
-               android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-           <TextView android:text="-" android:id="@+id/improvTitle"
-               android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-           <TextView android:text="-" android:id="@+id/improvCategory"
-               android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-           <TextView android:text="-" android:id="@+id/improvPlayerCount"
-               android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-           <TextView android:text="-" android:id="@+id/improvDuration"
-               android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-        </LinearLayout>
+	<TableLayout android:layout_width="match_parent"
+		android:id="@+id/tableLayoutNav" android:layout_height="wrap_content"
+		android:layout_weight="0" android:background="#E6418D">
 
-    
+		<!-- A row for controls -->
+		<TableRow android:id="@+id/tableRowNav"
+			android:layout_weight="1" android:layout_height="wrap_content"
+			android:layout_width="match_parent" android:paddingTop="3dp"
+			android:paddingBottom="3dp">
+
+			<Button android:id="@+id/btnPrevImprov" android:text="@string/btnPrevImprov"
+				android:layout_weight="2" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+			<Button android:id="@+id/btnNextImprov" android:text="@string/btnNextImprov"
+				android:layout_weight="2" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" />
+
+		</TableRow>
+
+	</TableLayout>
+
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:layout_weight="2">
+
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="wrap_content" android:layout_height="match_parent"
+			android:gravity="center" android:layout_weight="1">
+			<TextView android:text="-" android:id="@+id/improvType"
+				android:layout_weight="1" android:gravity="center"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+			<View android:layout_width="fill_parent" android:layout_height="1px"
+				android:background="#FF909090" />
+
+			<TextView android:text="-" android:id="@+id/improvPlayerCount"
+				android:layout_weight="1" android:gravity="center"
+
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+			<View android:layout_width="fill_parent" android:layout_height="1px"
+				android:background="#FF909090" />
+
+			<TextView android:text="-" android:id="@+id/improvDuration"
+				android:layout_weight="1" android:gravity="center"
+
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+		</LinearLayout>
+
+		<View android:layout_height="fill_parent" android:layout_width="1px"
+			android:background="#FF909090" />
+
+
+		<LinearLayout android:orientation="vertical"
+			android:layout_width="wrap_content" android:layout_height="match_parent"
+			android:gravity="center" android:layout_weight="2">
+
+			<TextView android:text="-" android:id="@+id/improvTitle"
+				android:layout_weight="1" android:gravity="center"
+
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+			<View android:layout_width="fill_parent" android:layout_height="1px"
+
+				android:background="#FF909090" />
+
+
+			<TextView android:text="-" android:id="@+id/improvCategory"
+				android:gravity="center" android:layout_weight="1"
+				android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+		</LinearLayout>
+
+	</LinearLayout>
+
 
 	<TableLayout android:layout_width="match_parent"
-        android:id="@+id/tableLayout1"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:stretchColumns="1"
-        android:background="#ff0000">
-        	
-		<!--  A row for controls -->
-		<TableRow android:id="@+id/tableRow2" 
-		  android:layout_weight="1"
-          android:layout_height="wrap_content" android:layout_width="match_parent" android:background="#0000ff"
-           android:paddingTop="3dp" android:paddingBottom="3dp">
+		android:id="@+id/tableLayout1" android:layout_height="wrap_content"
+		android:layout_weight="0" android:stretchColumns="1"
+		android:background="#E6418D">
 
-             <Button android:id="@+id/btnCaucus"  android:text="@string/btnCaucus" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+		<!-- A row for controls -->
+		<TableRow android:id="@+id/tableRow2" android:layout_weight="1"
+			android:layout_height="wrap_content" android:layout_width="match_parent"
+			android:paddingTop="3dp" android:paddingBottom="3dp">
 
-            <!--  FIXME(pht) : use proper layout to make it look like something nice -->
-            <ProgressBar android:id="@+id/barTime" 
-            android:paddingTop="2dp" android:paddingBottom="6dp"
-            style="?android:attr/progressBarStyleHorizontal" android:layout_width="wrap_content" android:layout_height="match_parent"/>
-            
-            <Button android:id="@+id/btnImprov" android:text="@string/btnImprov" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+			<Button android:id="@+id/btnCaucus" android:text="@string/btnCaucus"
+				android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+			<!-- FIXME(pht) : use proper layout to make it look like something nice -->
+			<ProgressBar android:id="@+id/barTime"
+				android:paddingTop="2dp" android:paddingBottom="6dp"
+				style="?android:attr/progressBarStyleHorizontal"
+				android:layout_width="wrap_content" android:layout_height="match_parent" />
+
+			<Button android:id="@+id/btnImprov" android:text="@string/btnImprov"
+				android:layout_width="match_parent" android:layout_height="wrap_content" />
 		</TableRow>
-	
+
 	</TableLayout>
-	
+
 </LinearLayout>
