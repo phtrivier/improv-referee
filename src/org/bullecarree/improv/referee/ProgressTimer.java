@@ -12,7 +12,7 @@ public class ProgressTimer {
     
     private long referenceTime = 0;
 
-    private long accumulatedTime = 0;
+    private long elapsedTimeMillis = 0;
     
     private int durationInSeconds;
     
@@ -20,6 +20,7 @@ public class ProgressTimer {
     
     private boolean running = false;
     
+
     private Runnable updateProgressTime = new Runnable() {
         public void run() {
             if (running) {
@@ -29,13 +30,13 @@ public class ProgressTimer {
                 
                 referenceTime = now;
                 
-                accumulatedTime = accumulatedTime + millis;
+                elapsedTimeMillis = elapsedTimeMillis + millis;
 
                 Log.d("time", "------------------------------------------");
                 
-                Log.d("time", "Accumulated time MS : " + accumulatedTime);
+                Log.d("time", "Accumulated time MS : " + elapsedTimeMillis);
                 
-                int accumulatedSeconds = (int) (accumulatedTime / 1000);
+                int accumulatedSeconds = (int) (elapsedTimeMillis / 1000);
     
                 Log.d("time", "Accumulated S : " + accumulatedSeconds);
                 Log.d("time", "Duration S : " + durationInSeconds);
@@ -52,7 +53,7 @@ public class ProgressTimer {
                 int progress = 100 - proportion;
                 
                 for (ProgressListener listener : progressListeners) {
-                    listener.onTick(progress, accumulatedTime);
+                    listener.onTick(progress, elapsedTimeMillis);
                 }
                 
                 // Don't schedule anything if progress is finished
@@ -73,7 +74,7 @@ public class ProgressTimer {
     
     public void start() {
         referenceTime = SystemClock.uptimeMillis();
-        accumulatedTime = 0;
+        elapsedTimeMillis = 0;
         progressHandler.removeCallbacks(updateProgressTime);
         progressHandler.postDelayed(updateProgressTime, 100);
         running = true;
@@ -81,7 +82,7 @@ public class ProgressTimer {
     
     public void reset() {
         referenceTime = 0;
-        accumulatedTime = 0;
+        elapsedTimeMillis = 0;
         progressHandler.removeCallbacks(updateProgressTime);
         running = false;
     }
@@ -106,5 +107,15 @@ public class ProgressTimer {
     public void addProgressListener(ProgressListener listener) {
         this.progressListeners.add(listener);
     }
+
+    public long getElapsedTimeMillis() {
+        return elapsedTimeMillis;
+    }
+
+    public void forceElapsedTime(long elapsedTimeMillis) {
+        referenceTime = SystemClock.uptimeMillis();
+        this.elapsedTimeMillis = elapsedTimeMillis;
+    }
+    
     
 }

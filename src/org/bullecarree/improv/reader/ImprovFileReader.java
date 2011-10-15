@@ -20,7 +20,7 @@ public class ImprovFileReader {
 
     BufferedReader bufferedReader;
 
-    int currentLineIndex = 0;
+    int currentImprovIndex = 0;
     
     ImprovReader reader = new ImprovReader();
 
@@ -32,6 +32,16 @@ public class ImprovFileReader {
 
     List<Improv> improvs = new ArrayList<Improv>();
 
+    /**
+     * The improv index to store in order to reopen 
+     * the same value later.
+     * 
+     * @return
+     */
+    public int getImprovIndexToStore() {
+        return currentImprovIndex;
+    }
+    
     public void readImprovs() throws IOException {
 
         // Open a well-known file in a well-known dir (should be in an init
@@ -94,10 +104,11 @@ public class ImprovFileReader {
             return FALLBACK_IMPROV;
         }
 
-        Improv res = improvs.get(currentLineIndex);
+        currentImprovIndex = (currentImprovIndex + 1) % improvs.size();
+        
+        Improv res = improvs.get(currentImprovIndex);
 
-        currentLineIndex = (currentLineIndex + 1) % improvs.size();
-        Log.d("improv", "Current line index " + currentLineIndex);
+        Log.d("improv", "Getting next improv, line index after " + currentImprovIndex);
         return res;
     }
 
@@ -106,17 +117,29 @@ public class ImprovFileReader {
             return FALLBACK_IMPROV;
         }
 
-        Improv res = improvs.get(currentLineIndex);
-
         // Damn "x = (x - 1) % N" that does not work as I hope ;) 
-        if (currentLineIndex == 0) {
-            currentLineIndex = improvs.size() - 1;
+        if (currentImprovIndex == 0) {
+            currentImprovIndex = improvs.size() - 1;
         } else {
-            currentLineIndex = (currentLineIndex - 1);    
+            currentImprovIndex = (currentImprovIndex - 1);    
         }
         
-        Log.d("improv", "Current line index " + currentLineIndex);
+        Improv res = improvs.get(currentImprovIndex);
+        
+        Log.d("improv", "Getting previous improv, line index after " + currentImprovIndex);
         return res;
+    }
+
+    /**
+     * Force the reader to give a specific improv.
+     * @param currentImprovIndex
+     */
+    public void setCurrentImprovIndex(int currentImprovIndex) {
+        this.currentImprovIndex = currentImprovIndex;
+    }
+    
+    public Improv getImprov(int improvIndex) {
+        return improvs.get(improvIndex);
     }
 
 }
