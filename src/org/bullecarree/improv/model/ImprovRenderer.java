@@ -59,7 +59,9 @@ public class ImprovRenderer {
         if (minutes > 0) {
             res.append(minutes).append("m ");
         }
-        res.append(seconds).append("s");
+        if (seconds > 0 && duration != 0) {
+            res.append(seconds).append("s");
+        }
         return res.toString();
     }
     
