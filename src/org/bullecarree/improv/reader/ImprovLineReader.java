@@ -9,14 +9,13 @@ import org.bullecarree.improv.model.ImprovType;
 
 import android.util.Log;
 
-public class ImprovReader {
+public class ImprovLineReader {
     
     public boolean isBlank(String str) {
         return str == null || "".equals(str);
     }
     
     public Improv readLine(String line) {
-        Log.d("improv", "About to read line : " + line);
         
         Improv res = new Improv();
         

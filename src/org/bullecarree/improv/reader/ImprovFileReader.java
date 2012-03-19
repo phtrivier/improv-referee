@@ -22,7 +22,7 @@ public class ImprovFileReader {
 
     int currentImprovIndex = 0;
     
-    ImprovReader reader = new ImprovReader();
+    ImprovLineReader reader = new ImprovLineReader();
 
     private static Improv FALLBACK_IMPROV = new Improv();
     static {
@@ -50,13 +50,9 @@ public class ImprovFileReader {
         // Keep index of the read line
 
         String state = Environment.getExternalStorageState();
-        Log.d("improv", "External storage state " + state);
-        
-        Log.d("improv", "External storage dir : " + Environment.getExternalStorageDirectory());
         
         File f = new File(Environment.getExternalStorageDirectory(), CSV_FILE);
         if (f == null || !f.exists()) {
-            Log.e("improv", "file does not exists, looked for " + CSV_FILE + " in " + Environment.getExternalStorageDirectory());
             throw new RuntimeException("File " + CSV_FILE + " does not exists");
         }
 
@@ -108,7 +104,6 @@ public class ImprovFileReader {
         
         Improv res = improvs.get(currentImprovIndex);
 
-        Log.d("improv", "Getting next improv, line index after " + currentImprovIndex);
         return res;
     }
 
@@ -126,7 +121,6 @@ public class ImprovFileReader {
         
         Improv res = improvs.get(currentImprovIndex);
         
-        Log.d("improv", "Getting previous improv, line index after " + currentImprovIndex);
         return res;
     }
 

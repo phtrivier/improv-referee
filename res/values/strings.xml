@@ -16,5 +16,7 @@
     <string name="typeMixt">Mixte</string>
     <string name="unlimited">Ill.</string>
     <string name="categoryFree">Libre</string>
+    <!--  FIXME (why is a quote refused ?) -->
+    <string name="list_no_improvs">Aucune</string>
     
 </resources>

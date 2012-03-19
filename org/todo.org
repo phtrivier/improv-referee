@@ -1,16 +1,28 @@
-* V0 (Referee activity)
-** Display the content of an improv (type, title, category, duration, playerlimit)
-** Add button to start caucus (25s)
-** Add button to start improv (duration of the improv)
-* V1 (ImprovList activity)
-** Load and display a list from .. wherever (the SD card ?)
-*** XML / YML / whatever is the easiest to load on an android device without external lib ;)
-** Move to referee activity when clicking on one
-* V2 (opening desired list)
-** Make it possible to browse to a list on the SD card ?
+* stuff to study 
+
+** app life cycle (Intent stuff)
+** db ? 
+** form validation
+** 
+* V2 (Improv's list)
+** Store the list in a db instead of the sd card (a bit complicated)
+** Add a menu to switch between list and main activy
+** An activity to display the list of available improvs, and browse through improvs
+** Possibility to delete a note (or clear out everything)
 * V3 (Improv's editor)
-** UI to enter the list (if makes sense, maybe it is easiest to do it from an editor outside ?)
+** UI to edit the improvs
+*** From the list, click on 'edit' (or mark and use an 'edit' button ?)
+*** activity with the fields
+ - [ ] Radio button for compared / mixt
+ - [ ] text field for player count (validate integer
+ - [ ] text field for title
+ - [ ] text field for catgory (will be a list later? or an autocomplete
+** Add a menu to main activity to edition (of the current improv)
 * V4 (improvements)
-** visual alerts when milestones of the improv are reached (2', 1', 30', 10')
+** gesture to navigate between improvs (instead of / as a complement to the buttons)
+** vibration / visual alerts when milestones of the improv are reached (2', 1', 30', 10')
 ** variable durations for caucuses
-** UI Improvements to make the stuff lookable
+* Various stuff
+** Add the MIT license headers to all files (a script probably exists for that)
+** Rename classes, put the app on the damn android store !
+** Use android conventsion (mRect, etc...) ?

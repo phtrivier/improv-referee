@@ -32,23 +32,10 @@ public class ProgressTimer {
                 
                 elapsedTimeMillis = elapsedTimeMillis + millis;
 
-                Log.d("time", "------------------------------------------");
-                
-                Log.d("time", "Accumulated time MS : " + elapsedTimeMillis);
-                
                 int accumulatedSeconds = (int) (elapsedTimeMillis / 1000);
-    
-                Log.d("time", "Accumulated S : " + accumulatedSeconds);
-                Log.d("time", "Duration S : " + durationInSeconds);
-                
                 int remainingS = (durationInSeconds - accumulatedSeconds);
                 
-                Log.d("time", "Duration ? " + durationInSeconds);
-                Log.d("time", "Remaining S : " + remainingS);
-                
                 int proportion = (((remainingS) * 100) / durationInSeconds);
-                
-                Log.d("time", "Proportion elapsed ? " + proportion);
                 
                 int progress = 100 - proportion;
                 

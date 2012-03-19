@@ -58,25 +58,15 @@ public class ImprovRefereeActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Log.d("state", "Storing improv line index " + improvReader.getImprovIndexToStore());
         outState.putInt(BUNDLE_KEY_IMPROV_INDEX, improvReader.getImprovIndexToStore());
-        Log.d("state", "Storing state " + state);
         outState.putString(BUNDLE_STATE_KEY, state.toString());
         
         if (state == State.CAUCUS || state == State.CAUCUS_PAUSED) {
-            
-            Log.d("state", "Storing progress " + barTimeProgress.getProgress());
-            Log.d("state", "Storing caucus elapsed time " + caucusTimer.getElapsedTimeMillis());
-            
             outState.putInt(IMPROV_CAUCUS_PROGRESS, barTimeProgress.getProgress());
             outState.putLong(IMPROV_CAUCUS_ELAPSED_TIME, caucusTimer.getElapsedTimeMillis());
         }
         
         if (state == State.GAME|| state == State.GAME_PAUSED) {
-            
-            Log.d("state", "Storing progress " + barTimeProgress.getProgress());
-            Log.d("state", "Storing improv elapsed time " + improvTimer.getElapsedTimeMillis());
-            
             outState.putInt(IMPROV_IMPROV_PROGRESS, barTimeProgress.getProgress());
             outState.putLong(IMPROV_IMPROV_ELAPSED_TIME, improvTimer.getElapsedTimeMillis());
         }
@@ -108,7 +98,6 @@ public class ImprovRefereeActivity extends Activity {
             improvIndex = savedInstanceState.getInt(BUNDLE_KEY_IMPROV_INDEX, 0);
             improvReader.setCurrentImprovIndex(improvIndex);
         }
-        Log.d("improv", "About to open improv at index " + improvIndex);
         currentImprov = improvReader.getImprov(improvIndex);
         
         if (savedInstanceState != null) {
@@ -175,12 +164,8 @@ public class ImprovRefereeActivity extends Activity {
                     - elapsedTimeMillis;
         }
 
-        Log.d("prout",
-                "Duration millis : " + String.valueOf(elapsedTimeMillis));
-        Log.d("rpout", "Remaining ms : " + remainingMs);
         int remainingS = (int) remainingMs / 1000;
-        Log.d("prout", "Remaining s : " + remainingS);
-
+        
         barTimeMessage.setText(renderer.displayTime(remainingS));
     }
     

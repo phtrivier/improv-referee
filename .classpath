@@ -4,5 +4,6 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="lib" path="libs/commons-csv-20070730.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="/home/phtrivier/prj/android/android-sdk-linux_x86/extras/android/compatibility/v4/android-support-v4.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
