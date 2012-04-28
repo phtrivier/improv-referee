@@ -26,6 +26,7 @@
       android:name=".contentprovider.ImprovContentProvider"
       android:authorities="org.bullecarre.improvs.contentprovider" >
    </provider>
+ <activity android:name="ImprovDetailActivity"></activity>
 
     </application>
 </manifest>

@@ -6,23 +6,27 @@
 ** 
 * V2 (Improv's list)
 ** Store the list in a db instead of the sd card (a bit complicated)
-** Add a menu to switch between list and main activy
-** An activity to display the list of available improvs, and browse through improvs
+ - [ ] ContentProvider stuff ... see http://www.vogella.de/articles/AndroidSQLite/article.html
+** Create an improv editor
+*** Menu basics
+ - [X] Adding a menu
+ - [X] Adding an entry to "Create" a new improv
+*** [ ] Adding an activity to fill an improv (like the detail activity)
+ - [ ] When saved, check the activity appears in the list
+*** Edition menu 
+ - [ ] Clicking on an entry should edit it (go back to the acitivty)
+ - [ ] Pass the edited improv
+ - [ ] Fill the data
+ - [ ] When save, go back to the list
+** Navigate between list and edition (to edit existing one) 
+** Navigate to 'match' view (with the same content provider in readable state ?)
 ** Possibility to delete a note (or clear out everything)
-* V3 (Improv's editor)
-** UI to edit the improvs
-*** From the list, click on 'edit' (or mark and use an 'edit' button ?)
-*** activity with the fields
- - [ ] Radio button for compared / mixt
- - [ ] text field for player count (validate integer
- - [ ] text field for title
- - [ ] text field for catgory (will be a list later? or an autocomplete
-** Add a menu to main activity to edition (of the current improv)
-* V4 (improvements)
+* (Improvements)
 ** gesture to navigate between improvs (instead of / as a complement to the buttons)
 ** vibration / visual alerts when milestones of the improv are reached (2', 1', 30', 10')
 ** variable durations for caucuses
 * Various stuff
 ** Add the MIT license headers to all files (a script probably exists for that)
+** Remove the org.bullecarree stuff..
 ** Rename classes, put the app on the damn android store !
 ** Use android conventsion (mRect, etc...) ?

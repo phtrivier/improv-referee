@@ -12,6 +12,7 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class ImprovListActivity extends FragmentActivity {
@@ -32,26 +33,20 @@ public class ImprovListActivity extends FragmentActivity {
     // Create the menu based on the XML defintion
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        /* LATER
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.listmenu, menu);
-        return true;
-        */
+        inflater.inflate(R.menu.list_activity_menu, menu);
         return true;
     }
 
     // Reaction to the menu selection
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /* LATER
         switch (item.getItemId()) {
-        case R.id.insert:
-            createTodo();
+        case R.id.list_menu_add_improv:
+            addImprov();
             return true;
         }
         return super.onOptionsItemSelected(item);
-        */
-        return false;
     }
 
     @Override
@@ -72,11 +67,9 @@ public class ImprovListActivity extends FragmentActivity {
         return false;
     }
 
-    private void createTodo() {
-        /* LATER
-        Intent i = new Intent(this, TodoDetailActivity.class);
+    private void addImprov() {
+        Intent i = new Intent(this, ImprovDetailActivity.class);
         startActivityForResult(i, ACTIVITY_CREATE);
-        */
     }
 
     // Opens the second activity if an entry is clicked
