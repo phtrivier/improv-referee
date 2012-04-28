@@ -5,7 +5,22 @@
     android:orientation="vertical" >
     
     <!--  TODO ! -->
-
+      <EditText
+          android:id="@+id/improv_edit_title"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:hint="@string/improv_edit_title"
+          android:imeOptions="actionNext" >
+      </EditText>
+      
+      <Button
+        android:id="@+id/btnImprovEditSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/improv_edit_save" >
+    </Button>
+      
 <!-- 
     <Spinner
         android:id="@+id/category"

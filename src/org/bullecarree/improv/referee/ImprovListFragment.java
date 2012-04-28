@@ -11,6 +11,7 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 
 public class ImprovListFragment extends ListFragment implements LoaderCallbacks<Cursor> {
 
@@ -25,17 +26,15 @@ public class ImprovListFragment extends ListFragment implements LoaderCallbacks<
         // Must include the _id column for the adapter to work
         String[] from = new String[] { ImprovDbTable.COL_TITLE};
         // Fields on the UI to which we map
-        int[] to = new int[] { R.id.label };
+        int[] to = new int[] { R.id.improvListItem_title };
 
-        // Now thhhhhhhats the trick where I will need the compatibility layer, I suppose ...
-          
         Context context = this.getActivity();
         
         this.getLoaderManager().initLoader(0, null, this);
         adapter = new SimpleCursorAdapter(context, R.layout.improv_list_item, null, from,
                 to, 0);
 
-        // FIXME ... setListAdapter(adapter);
+        setListAdapter(adapter);
     }
 
     // Creates a new loader after the initLoader () call

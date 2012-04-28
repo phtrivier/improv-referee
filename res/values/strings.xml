@@ -18,5 +18,8 @@
     <string name="categoryFree">Libre</string>
     <!--  FIXME (why is a quote refused ?) -->
     <string name="list_no_improvs">Aucune</string>
-    
+    <!-- Edition -->
+    <string name="improv_edit_title">Title</string>
+    <string name="improv_edit_save">Save</string>
+        
 </resources>

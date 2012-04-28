@@ -1,16 +1,8 @@
 package org.bullecarree.improv.referee;
 
-import org.bullecarree.improv.db.ImprovDbTable;
-import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
-
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.LoaderManager.LoaderCallbacks;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
