@@ -22,18 +22,21 @@ public class ImprovListFragment extends ListFragment implements LoaderCallbacks<
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setEmptyText("No improvs");
+        
         // Fields from the database (projection)
-        // Must include the _id column for the adapter to work
         String[] from = new String[] { ImprovDbTable.COL_TITLE};
         // Fields on the UI to which we map
         int[] to = new int[] { R.id.improvListItem_title };
 
         Context context = this.getActivity();
         
-        this.getLoaderManager().initLoader(0, null, this);
         adapter = new SimpleCursorAdapter(context, R.layout.improv_list_item, null, from,
                 to, 0);
 
+        
+        this.getLoaderManager().initLoader(0, null, this);
+        
         setListAdapter(adapter);
     }
 
@@ -55,6 +58,7 @@ public class ImprovListFragment extends ListFragment implements LoaderCallbacks<
     public void onLoaderReset(Loader<Cursor> loader) {
         // data is not available anymore, delete reference
         adapter.swapCursor(null);
+        setListShown(true);
     }
 
 }
