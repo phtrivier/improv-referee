@@ -20,6 +20,10 @@
     <string name="list_no_improvs">Aucune</string>
     <!-- Edition -->
     <string name="improv_edit_title">Title</string>
+    <string name="improv_edit_category">Category</string>
+    <string name="improv_edit_duration">Duration</string>
+    <string name="improv_edit_player_count">Player count</string>
+    
     <string name="improv_edit_save">Save</string>
         
 </resources>

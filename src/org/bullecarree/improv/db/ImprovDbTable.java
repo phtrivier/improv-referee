@@ -19,7 +19,7 @@ public class ImprovDbTable {
             + " integer primary key autoincrement, " + COL_TITLE
             + " text not null, " + COL_TYPE + " text not null, " + COL_DURATION
             + " integer not null, " + 
-            COL_CATEGORY + " text " + COL_PLAYER + " integer)";
+            COL_CATEGORY + " text, " + COL_PLAYER + " integer)";
     
     public static void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE);

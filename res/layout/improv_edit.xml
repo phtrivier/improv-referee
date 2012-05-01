@@ -1,18 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
     
     <!--  TODO ! -->
+    
+      <TextView 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:text="Category"
+          />
+    
+      <Spinner 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:id="@+id/improv_edit_type"
+          />
+    
+      <TextView 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:text="Title"
+          />
+      
       <EditText
           android:id="@+id/improv_edit_title"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:layout_height="match_parent"
           android:layout_weight="1"
           android:hint="@string/improv_edit_title"
           android:imeOptions="actionNext" >
       </EditText>
+      
+      <TextView 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:text="Category"
+          />
+      
+      <EditText
+          android:id="@+id/improv_edit_category"
+          android:layout_width="fill_parent"
+          android:layout_height="0dip"
+          android:layout_weight="1"
+          android:hint="@string/improv_edit_category"
+          android:imeOptions="actionNext" >
+      </EditText>
+      
+      <TextView 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:text="Player count"
+          />
+      
+      <EditText
+          android:id="@+id/improv_edit_player_count"
+          android:layout_width="fill_parent"
+          android:layout_height="0dip"
+          android:layout_weight="1"
+          android:hint="@string/improv_edit_player_count"
+          android:imeOptions="actionNext" >
+      </EditText>
+      
+      
+      <TextView 
+          android:layout_height="wrap_content"
+          android:layout_width="fill_parent"
+          android:text="Duration (in seconds)"
+          />
+      
+      <EditText
+          android:id="@+id/improv_edit_duration"
+          android:layout_width="fill_parent"
+          android:layout_height="0dip"
+          android:layout_weight="1"
+          android:hint="@string/improv_edit_duration"
+          android:imeOptions="actionNext" >
+      </EditText>
+      
+      
       
       <Button
         android:id="@+id/btnImprovEditSave"
@@ -20,45 +87,7 @@
         android:layout_height="wrap_content"
         android:text="@string/improv_edit_save" >
     </Button>
+    
       
-<!-- 
-    <Spinner
-        android:id="@+id/category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/priorities" >
-    </Spinner>
-
-    <LinearLayout
-        android:id="@+id/LinearLayout01"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <EditText
-            android:id="@+id/todo_edit_summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/todo_edit_summary"
-            android:imeOptions="actionNext" >
-        </EditText>
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/todo_edit_description"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:hint="@string/todo_edit_description"
-        android:imeOptions="actionNext" >
-    </EditText>
-
-    <Button
-        android:id="@+id/todo_edit_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/todo_edit_confirm" >
-    </Button>
- -->
+      
 </LinearLayout>
