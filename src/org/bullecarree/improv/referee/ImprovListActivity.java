@@ -1,16 +1,20 @@
 package org.bullecarree.improv.referee;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
 
 public class ImprovListActivity extends FragmentActivity {
 
-    private static final int ACTIVITY_CREATE = 0;
-    private static final int ACTIVITY_EDIT = 1;
+    public static final int ACTIVITY_CREATE = 0;
+    public static final int ACTIVITY_EDIT = 1;
+    
     private static final int DELETE_ID = Menu.FIRST + 1;
     
     
@@ -64,20 +68,7 @@ public class ImprovListActivity extends FragmentActivity {
         startActivityForResult(i, ACTIVITY_CREATE);
     }
 
-    // Opens the second activity if an entry is clicked
-//    @Override
-//    protected void onListItemClick(ListView l, View v, int position, long id) {
-//        /* LATER
-//        super.onListItemClick(l, v, position, id);
-//        Intent i = new Intent(this, TodoDetailActivity.class);
-//        Uri todoUri = Uri.parse(MyTodoContentProvider.CONTENT_URI + "/" + id);
-//        i.putExtra(MyTodoContentProvider.CONTENT_ITEM_TYPE, todoUri);
-//
-//        // Activity returns an result if called with startActivityForResult
-//        startActivityForResult(i, ACTIVITY_EDIT);
-//        */
-    //}
-
+    
     // Called with the result of the other activity
     // requestCode was the origin request code send to the activity
     // resultCode is the return code, 0 is everything is ok

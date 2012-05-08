@@ -166,11 +166,6 @@ public class ImprovContentProvider extends ContentProvider {
         }
     }
 
-
-
-
-
-
     @Override
     public int update(Uri uri, ContentValues values, String selection,
             String[] selectionArgs) {

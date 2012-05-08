@@ -30,6 +30,7 @@
           android:layout_height="match_parent"
           android:layout_weight="1"
           android:hint="@string/improv_edit_title"
+          android:inputType="text"
           android:imeOptions="actionNext" >
       </EditText>
       
@@ -44,6 +45,7 @@
           android:layout_width="fill_parent"
           android:layout_height="0dip"
           android:layout_weight="1"
+          android:inputType="textNoSuggestions"
           android:hint="@string/improv_edit_category"
           android:imeOptions="actionNext" >
       </EditText>
@@ -59,6 +61,7 @@
           android:layout_width="fill_parent"
           android:layout_height="0dip"
           android:layout_weight="1"
+          android:inputType="numberDecimal"
           android:hint="@string/improv_edit_player_count"
           android:imeOptions="actionNext" >
       </EditText>
@@ -75,6 +78,7 @@
           android:layout_width="fill_parent"
           android:layout_height="0dip"
           android:layout_weight="1"
+          android:inputType="numberDecimal"
           android:hint="@string/improv_edit_duration"
           android:imeOptions="actionNext" >
       </EditText>

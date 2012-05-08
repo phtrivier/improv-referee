@@ -11,16 +11,19 @@
 *** Menu basics
  - [X] Adding a menu
  - [X] Adding an entry to "Create" a new improv
-*** [ ] Adding an activity to fill an improv (like the detail activity)
- - [ ] When saved, check the activity appears in the list
+*** [X] Adding an activity to fill an improv (like the detail activity)
+ - [X] When saved, check the activity appears in the list
 *** Edition menu 
- - [ ] Clicking on an entry should edit it (go back to the acitivty)
- - [ ] Pass the edited improv
- - [ ] Fill the data
- - [ ] When save, go back to the list
-** Navigate between list and edition (to edit existing one) 
-** Navigate to 'match' view (with the same content provider in readable state ?)
+ - [X] Clicking on an entry should edit it (go back to the acitivty)
+ - [X] Pass the edited improv
+ - [X] Fill the data
+ - [X] When save, edit and go back to the list
+** Navigate to 'game' view (with the same content provider in readable state ?) and back to list
+** At this point, test on actual device !!! And try and write a list of improvs
 ** Possibility to delete a note (or clear out everything)
+** Change the 'seconds' editor to something more usable
+** Change orientation of the screen based on content
+** Add 'cancel' button in edit screen
 * (Improvements)
 ** gesture to navigate between improvs (instead of / as a complement to the buttons)
 ** vibration / visual alerts when milestones of the improv are reached (2', 1', 30', 10')
