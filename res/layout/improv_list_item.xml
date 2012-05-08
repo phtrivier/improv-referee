@@ -15,4 +15,18 @@
         >
     </TextView>
 
+    <TextView
+        android:id="@+id/improvListItem_details"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="right"
+        android:lines="1"
+        android:text="@+id/TextView01"
+        android:textSize="24dp" 
+        >
+    </TextView>
+    
+    
+    
 </LinearLayout>

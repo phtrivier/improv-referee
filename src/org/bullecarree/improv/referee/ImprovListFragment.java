@@ -1,6 +1,8 @@
 package org.bullecarree.improv.referee;
 
 import org.bullecarree.improv.db.ImprovDbTable;
+import org.bullecarree.improv.model.ImprovRenderer;
+import org.bullecarree.improv.model.ImprovType;
 import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
 
 import android.content.Context;
@@ -14,8 +16,12 @@ import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ImprovListFragment extends ListFragment implements
         LoaderCallbacks<Cursor> {
@@ -37,17 +43,70 @@ public class ImprovListFragment extends ListFragment implements
         Context context = this.getActivity();
 
         adapter = new SimpleCursorAdapter(context, R.layout.improv_list_item,
-                null, from, to, 0);
+                null, from, to, 0) {
+
+            
+            public View newView(Context context, Cursor cursor, ViewGroup parent) {
+                View v = super.newView(context, cursor, parent);
+                TextView title_text = (TextView) v.findViewById(R.id.improvListItem_details);
+                if (title_text != null) {
+                    title_text.setText(getImprovDetails(cursor));
+                }
+                return v;
+            };
+
+            public void bindView(View v, Context context, Cursor cursor) {
+                super.bindView(v, context, cursor);
+                TextView title_text = (TextView) v.findViewById(R.id.improvListItem_details);
+                if (title_text != null) {
+                    title_text.setText(getImprovDetails(cursor));
+                }
+            };
+            
+        };
 
         this.getLoaderManager().initLoader(0, null, this);
 
         setListAdapter(adapter);
     }
 
+    public String getImprovDetails(Cursor cursor) {
+     // super.convertToString(cursor);
+        StringBuffer res = new StringBuffer();
+        /*
+        String title = cursor.getString(cursor
+                .getColumnIndexOrThrow(ImprovDbTable.COL_TITLE));
+        */
+        
+        String type = cursor.getString(cursor
+                .getColumnIndexOrThrow(ImprovDbTable.COL_TYPE));
+        // cursor.getString(cursor.getColumnIndexOrThrow(ImprovDbTable.COL_TYPE));
+        if (ImprovType.MIXT.toString().equalsIgnoreCase(type)) {
+            res.append("(M) ");
+        } else {
+            res.append("(C) ");
+        }
+
+        // res.append(title);
+
+        Integer duration = cursor.getInt(cursor
+                .getColumnIndexOrThrow(ImprovDbTable.COL_DURATION));
+        res.append(ImprovRenderer.displayTime(duration));
+
+        String category = cursor.getString(cursor
+                .getColumnIndex(ImprovDbTable.COL_CATEGORY));
+        if (category != null && !"".equalsIgnoreCase(category)) {
+            res.append(" (");
+            res.append(category);
+            res.append(")");
+        }
+        return res.toString();
+    }
+    
     // Creates a new loader after the initLoader () call
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        String[] projection = { ImprovDbTable.COL_ID, ImprovDbTable.COL_TITLE };
+        String[] projection = { ImprovDbTable.COL_ID, ImprovDbTable.COL_TITLE, ImprovDbTable.COL_TYPE, ImprovDbTable.COL_DURATION, ImprovDbTable.COL_CATEGORY };
         CursorLoader cursorLoader = new CursorLoader(this.getActivity(),
                 ImprovContentProvider.CONTENT_URI, projection, null, null, null);
         return cursorLoader;

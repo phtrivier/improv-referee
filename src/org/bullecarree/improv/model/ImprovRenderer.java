@@ -51,7 +51,7 @@ public class ImprovRenderer {
         return displayTime(improv.getDuration());
     }
     
-    public String displayTime(int duration) {
+    public static String displayTime(int duration) {
         StringBuffer res = new StringBuffer();
         int minutes = duration / 60;
         int seconds = duration % 60;
