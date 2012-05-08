@@ -1,4 +1,6 @@
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item android:id="@+id/list_menu_add_improv" android:titleCondensed="Add" android:alphabeticShortcut="A" android:title="Add improv"></item>
-    </menu>
+        <item android:id="@+id/list_menu_play_game" android:titleCondensed="Play" android:alphabeticShortcut="P" android:title="Play game"></item>
+        
+        </menu>

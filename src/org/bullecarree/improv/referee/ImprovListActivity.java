@@ -14,6 +14,7 @@ public class ImprovListActivity extends FragmentActivity {
 
     public static final int ACTIVITY_CREATE = 0;
     public static final int ACTIVITY_EDIT = 1;
+    public static final int ACTIVITY_REFEREE = 0;
     
     private static final int DELETE_ID = Menu.FIRST + 1;
     
@@ -37,9 +38,13 @@ public class ImprovListActivity extends FragmentActivity {
     // Reaction to the menu selection
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        
         switch (item.getItemId()) {
         case R.id.list_menu_add_improv:
             addImprov();
+            return true;
+        case R.id.list_menu_play_game:
+            playGame();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -68,6 +73,11 @@ public class ImprovListActivity extends FragmentActivity {
         startActivityForResult(i, ACTIVITY_CREATE);
     }
 
+    private void playGame() {
+        Intent i = new Intent(this, ImprovRefereeActivity.class);
+        startActivityForResult(i, ACTIVITY_REFEREE);
+    }
+
     
     // Called with the result of the other activity
     // requestCode was the origin request code send to the activity
@@ -78,15 +88,5 @@ public class ImprovListActivity extends FragmentActivity {
             Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
     }
-
-
-//    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v,
-//            ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        // LATER menu.add(0, DELETE_ID, 0, R.string.menu_delete);
-//    }
-
-
     
 }

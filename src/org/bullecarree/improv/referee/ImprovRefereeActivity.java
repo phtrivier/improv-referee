@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.bullecarree.improv.model.Improv;
 import org.bullecarree.improv.model.ImprovRenderer;
 import org.bullecarree.improv.model.ImprovType;
-import org.bullecarree.improv.reader.ImprovFileReader;
+import org.bullecarree.improv.reader.ImprovDatabaseReader;
 
 import android.app.Activity;
 import android.content.IntentSender.OnFinished;
@@ -42,7 +42,7 @@ public class ImprovRefereeActivity extends Activity {
 
     private Improv currentImprov = new Improv();
 
-    private ImprovFileReader improvReader = null;
+    private ImprovDatabaseReader improvDbReader = null;
 
     private ImprovRenderer renderer;
 
@@ -58,7 +58,7 @@ public class ImprovRefereeActivity extends Activity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(BUNDLE_KEY_IMPROV_INDEX, improvReader.getImprovIndexToStore());
+        outState.putInt(BUNDLE_KEY_IMPROV_INDEX, improvDbReader.getImprovIndexToStore());
         outState.putString(BUNDLE_STATE_KEY, state.toString());
         
         if (state == State.CAUCUS || state == State.CAUCUS_PAUSED) {
@@ -86,9 +86,11 @@ public class ImprovRefereeActivity extends Activity {
                 getString(R.string.typeMixt), getString(R.string.unlimited),
                 getString(R.string.categoryFree));
 
-        improvReader = new ImprovFileReader();
+        improvDbReader = new ImprovDatabaseReader(getContentResolver());
+        
+        
         try {
-            improvReader.readImprovs();
+            improvDbReader.readImprovs();
         } catch (IOException e) {
             throw new RuntimeException("Error while parsing file", e);
         }
@@ -96,9 +98,9 @@ public class ImprovRefereeActivity extends Activity {
         int improvIndex = 0;
         if (savedInstanceState != null) {
             improvIndex = savedInstanceState.getInt(BUNDLE_KEY_IMPROV_INDEX, 0);
-            improvReader.setCurrentImprovIndex(improvIndex);
+            improvDbReader.setCurrentImprovIndex(improvIndex);
         }
-        currentImprov = improvReader.getImprov(improvIndex);
+        currentImprov = improvDbReader.getImprov(improvIndex);
         
         if (savedInstanceState != null) {
             state = State.valueOf(savedInstanceState.getString(BUNDLE_STATE_KEY));
@@ -177,7 +179,7 @@ public class ImprovRefereeActivity extends Activity {
         btnPrev.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentImprov = improvReader.previousImprov();
+                currentImprov = improvDbReader.previousImprov();
                 loadImprov(currentImprov);
             }
         });
@@ -185,7 +187,7 @@ public class ImprovRefereeActivity extends Activity {
         btnNext.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentImprov = improvReader.nextImprov();
+                currentImprov = improvDbReader.nextImprov();
                 loadImprov(currentImprov);
             }
         });

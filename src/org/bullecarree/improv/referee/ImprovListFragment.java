@@ -62,12 +62,10 @@ public class ImprovListFragment extends ListFragment implements
     public void onLoaderReset(Loader<Cursor> loader) {
         // data is not available anymore, delete reference
         adapter.swapCursor(null);
-        setListShown(true);
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
         super.onListItemClick(l, v, position, id);
         Intent i = new Intent(getActivity(), ImprovDetailActivity.class);
         Uri todoUri = Uri.parse(ImprovContentProvider.CONTENT_URI + "/" + id);
@@ -75,7 +73,6 @@ public class ImprovListFragment extends ListFragment implements
 
         // Activity returns an result if called with startActivityForResult
         startActivityForResult(i, ImprovListActivity.ACTIVITY_EDIT);
-
     }
 
 }
