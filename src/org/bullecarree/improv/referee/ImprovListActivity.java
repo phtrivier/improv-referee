@@ -15,11 +15,6 @@ public class ImprovListActivity extends FragmentActivity {
     public static final int ACTIVITY_CREATE = 0;
     public static final int ACTIVITY_EDIT = 1;
     public static final int ACTIVITY_REFEREE = 0;
-    
-    private static final int DELETE_ID = Menu.FIRST + 1;
-    
-    
-/** Called when the activity is first created. */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,24 +43,6 @@ public class ImprovListActivity extends FragmentActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        /* LATER
-        switch (item.getItemId()) {
-        case DELETE_ID:
-            AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
-                    .getMenuInfo();
-            Uri uri = Uri.parse(MyTodoContentProvider.CONTENT_URI + "/"
-                    + info.id);
-            getContentResolver().delete(uri, null, null);
-            fillData();
-            return true;
-        }
-        return super.onContextItemSelected(item);
-        */
-        return false;
     }
 
     private void addImprov() {

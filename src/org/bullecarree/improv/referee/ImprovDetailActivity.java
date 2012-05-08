@@ -6,7 +6,9 @@ import org.bullecarree.improv.model.ImprovType;
 import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -40,9 +42,6 @@ public class ImprovDetailActivity extends Activity {
 
         setContentView(R.layout.improv_edit);
 
-        improvUri = bundle == null ? null : (Uri) bundle
-                .getParcelable(ImprovContentProvider.CONTENT_TYPE);
-
         mTypeSpinner = (Spinner) findViewById(R.id.improv_edit_type);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
                 R.array.improv_type, android.R.layout.simple_spinner_item);
@@ -57,10 +56,17 @@ public class ImprovDetailActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         // Or passed from the other activity
-        if (extras != null) {
+        
+        boolean isEdit = false;
+        
+        if (extras == null) {
+            improvUri = null;
+            isEdit = false;
+        } else {
             improvUri = extras
                     .getParcelable(ImprovContentProvider.CONTENT_ITEM_TYPE);
             fillData(improvUri);
+            isEdit = true;
         }
 
         Button btnSave = (Button) findViewById(R.id.btnImprovEditSave);
@@ -76,7 +82,7 @@ public class ImprovDetailActivity extends Activity {
                 if (title == null || "".equals(title)) {
                     Toast.makeText(ImprovDetailActivity.this,
                             "Please give a title", Toast.LENGTH_LONG).show();
-                } else if (playerCount == null || playerCount.intValue() <= 0) {
+                } else if (playerCount.intValue() < 0) {
                     Toast.makeText(ImprovDetailActivity.this,
                             "Please provide a positive player count",
                             Toast.LENGTH_LONG).show();
@@ -90,6 +96,27 @@ public class ImprovDetailActivity extends Activity {
                 }
             }
         });
+
+        Button btnDelete = (Button) findViewById(R.id.btnImprovDelete);
+        btnDelete.setEnabled(isEdit);
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(ImprovDetailActivity.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.improv_edit_confirm_delete_title)
+                .setMessage(R.string.improv_edit_confirm_delete_message)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteCurrentImprov();
+                    }
+                })
+                .setNegativeButton(R.string.no, null)
+                .show();
+            }
+        });
     }
 
     private void fillData(Uri uri) {
@@ -100,7 +127,7 @@ public class ImprovDetailActivity extends Activity {
                 null);
         if (cursor != null) {
             cursor.moveToFirst();
-            String type= cursor.getString(cursor
+            String type = cursor.getString(cursor
                     .getColumnIndexOrThrow(ImprovDbTable.COL_TYPE));
             for (int i = 0; i < mTypeSpinner.getCount(); i++) {
                 String s = (String) mTypeSpinner.getItemAtPosition(i);
@@ -137,7 +164,7 @@ public class ImprovDetailActivity extends Activity {
     }
 
     private Integer getPlayerCount() {
-        Integer playerCount = null;
+        Integer playerCount = 0;
         Editable editable = mPlayerText.getText();
         if (editable != null) {
             String playerCountStr = editable.toString().trim();
@@ -169,6 +196,12 @@ public class ImprovDetailActivity extends Activity {
         return mTitleText.getText().toString();
     }
 
+    private void deleteCurrentImprov() {
+        getContentResolver().delete(improvUri, null, null);
+        setResult(RESULT_OK);
+        finish();
+    }
+    
     private void saveState() {
 
         String title = getImprovTitle();

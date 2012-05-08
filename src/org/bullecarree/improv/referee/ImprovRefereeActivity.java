@@ -88,33 +88,39 @@ public class ImprovRefereeActivity extends Activity {
 
         improvDbReader = new ImprovDatabaseReader(getContentResolver());
         
+        configureTimerButtons();
         
+        int improvCount = 0;
         try {
-            improvDbReader.readImprovs();
+            improvCount = improvDbReader.readImprovs();
         } catch (IOException e) {
             throw new RuntimeException("Error while parsing file", e);
         }
 
-        int improvIndex = 0;
-        if (savedInstanceState != null) {
-            improvIndex = savedInstanceState.getInt(BUNDLE_KEY_IMPROV_INDEX, 0);
-            improvDbReader.setCurrentImprovIndex(improvIndex);
+        if (improvCount == 0) {
+            setResult(RESULT_OK);
+            finish();
+        } else {
+            
+            int improvIndex = 0;
+            if (savedInstanceState != null) {
+                improvIndex = savedInstanceState.getInt(BUNDLE_KEY_IMPROV_INDEX, 0);
+                improvDbReader.setCurrentImprovIndex(improvIndex);
+            }
+            currentImprov = improvDbReader.getImprov(improvIndex);
+            
+            if (savedInstanceState != null) {
+                state = State.valueOf(savedInstanceState.getString(BUNDLE_STATE_KEY));
+            }
+            
+            setButtonsForState(state);
+    
+            configureTimers(savedInstanceState);
+            
+            configureNavigation();
+    
+            loadImprov(currentImprov);
         }
-        currentImprov = improvDbReader.getImprov(improvIndex);
-        
-        if (savedInstanceState != null) {
-            state = State.valueOf(savedInstanceState.getString(BUNDLE_STATE_KEY));
-        }
-        
-        configureTimerButtons();
-        setButtonsForState(state);
-
-        configureTimers(savedInstanceState);
-        
-        configureNavigation();
-
-        loadImprov(currentImprov);
-
     }
 
     private void configureTimers(Bundle savedInstanceState) {
@@ -387,8 +393,12 @@ public class ImprovRefereeActivity extends Activity {
     }
 
     private void stopAllTheClocks() {
-        improvTimer.stop();
-        caucusTimer.stop();
+        if (improvTimer != null) {
+            improvTimer.stop();
+        }
+        if (caucusTimer != null) {
+            caucusTimer.stop();
+        }
     }
 
     private void restartAllTheClocks() {

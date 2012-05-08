@@ -27,7 +27,7 @@ public class ImprovListFragment extends ListFragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setEmptyText("No improvs");
+        setEmptyText("No improvs. Open the menu and click 'Add' to create a new improv.");
 
         // Fields from the database (projection)
         String[] from = new String[] { ImprovDbTable.COL_TITLE };

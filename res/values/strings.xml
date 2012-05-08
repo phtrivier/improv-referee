@@ -25,5 +25,13 @@
     <string name="improv_edit_player_count">Player count</string>
     
     <string name="improv_edit_save">Save</string>
-        
+    <string name="improv_edit_delete">Delete</string>
+    
+    <string name="improv_edit_confirm_delete_title">Confirm</string>
+    <string name="improv_edit_confirm_delete_message">Do you really want to delete this improv? This can not be undone.</string>
+    
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    
+    
 </resources>

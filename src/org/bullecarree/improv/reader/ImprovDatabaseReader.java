@@ -55,8 +55,12 @@ public class ImprovDatabaseReader {
         return currentImprovIndex;
     }
 
-    public void readImprovs() throws IOException {
+    public int readImprovs() throws IOException {
 
+        int res = 0;
+        
+        improvs.clear();
+        
         String[] projection = { ImprovDbTable.COL_TITLE,
                 ImprovDbTable.COL_CATEGORY, ImprovDbTable.COL_TYPE,
                 ImprovDbTable.COL_DURATION, ImprovDbTable.COL_PLAYER };
@@ -102,52 +106,10 @@ public class ImprovDatabaseReader {
                     // playerCount will be null, so infinite...
                 }
                 improvs.add(improv);
-
+                res++;
             }
-        } else {
-            improvs.add(FALLBACK_IMPROV);
-        }
-        //
-        //
-        // File f = new File(Environment.getExternalStorageDirectory(),
-        // CSV_FILE);
-        // if (f == null || !f.exists()) {
-        // throw new RuntimeException("File " + CSV_FILE + " does not exists");
-        // }
-        //
-        // FileReader fr = new FileReader(f);
-        // bufferedReader = new BufferedReader(fr);
-        // // Skip first line
-        // String line = null;
-        // try {
-        // line = bufferedReader.readLine();
-        // } catch (IOException e) {
-        // throw e;
-        // }
-        //
-        // // This is much uglier than I would like, but
-        // // I guess it will do.
-        // // TODO(pht) improve error handling.
-        // // For the moment I'll just ditch improvs whenever I can't read
-        // something...
-        // while (line != null) {
-        // Improv res = null;
-        // try {
-        // line = bufferedReader.readLine();
-        // if (line != null) {
-        // res = reader.readLine(line);
-        // if (res == null) {
-        // improvs.add(FALLBACK_IMPROV);
-        // } else {
-        // improvs.add(res);
-        // }
-        // }
-        // } catch (IOException e) {
-        // res = FALLBACK_IMPROV;
-        // improvs.add(res);
-        // }
-        // }
-
+        } 
+        return res;
     }
 
     /**
