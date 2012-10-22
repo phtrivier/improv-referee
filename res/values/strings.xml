@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Improv Referee</string>
+    <string name="app_name">Arbitre, c\'est un métier !</string>
     <string name="btnCaucus">Caucus</string>
     <string name="btnImprov">Au jeu</string>
     <string name="btnPause">Pause</string>
@@ -19,19 +19,20 @@
     <!--  FIXME (why is a quote refused ?) -->
     <string name="list_no_improvs">Aucune</string>
     <!-- Edition -->
-    <string name="improv_edit_title">Title</string>
-    <string name="improv_edit_category">Category</string>
-    <string name="improv_edit_duration">Duration</string>
-    <string name="improv_edit_player_count">Player count</string>
+    <string name="improv_edit_type">Type</string>
+    <string name="improv_edit_title">Titre</string>
+    <string name="improv_edit_category">Catégorie</string>
+    <string name="improv_edit_duration">Durée (en secondes)</string>
+    <string name="improv_edit_player_count">Joueurs</string>
     
-    <string name="improv_edit_save">Save</string>
-    <string name="improv_edit_delete">Delete</string>
+    <string name="improv_edit_save">Sauver</string>
+    <string name="improv_edit_delete">Supprimer</string>
     
-    <string name="improv_edit_confirm_delete_title">Confirm</string>
-    <string name="improv_edit_confirm_delete_message">Do you really want to delete this improv? This can not be undone.</string>
+    <string name="improv_edit_confirm_delete_title">Confirmer</string>
+    <string name="improv_edit_confirm_delete_message">Voulez vous vraiment supprimer cette impro ?</string>
     
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
     
     
 </resources>

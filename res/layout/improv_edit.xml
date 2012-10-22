@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:text="@string/improv_edit_type" />
 
     <Spinner
         android:id="@+id/improv_edit_type"
@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Title" />
+        android:text="@string/improv_edit_title" />
 
     <EditText
         android:id="@+id/improv_edit_title"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Category" />
+        android:text="@string/improv_edit_category" />
 
     <EditText
         android:id="@+id/improv_edit_category"
@@ -49,7 +49,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Player count" />
+        android:text="@string/improv_edit_player_count" />
 
     <EditText
         android:id="@+id/improv_edit_player_count"
@@ -64,7 +64,7 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Duration (in seconds)" />
+        android:text="@string/improv_edit_duration" />
 
     <EditText
         android:id="@+id/improv_edit_duration"
@@ -84,6 +84,7 @@
         <Button
             android:id="@+id/btnImprovEditSave"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/improv_edit_save" >
         </Button>
@@ -91,6 +92,7 @@
         <Button
             android:id="@+id/btnImprovDelete"
             android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="@string/improv_edit_delete" >
         </Button>

@@ -1,8 +1,8 @@
 <resources>
 
     <string-array name="improv_type">
-        <item>Mixt</item>
-        <item>Compared</item>
+        <item>Mixte</item>
+        <item>Compée</item>
     </string-array>
     
 </resources>
