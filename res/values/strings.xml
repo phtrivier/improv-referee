@@ -34,5 +34,8 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     
+    <string name="improv_edit_error_no_title">Il manque un titre à cette impro !</string>
+    <string name="improv_edit_error_negative_player_count">Ne soyez pas timide, il faut au moins un joueur sur scène !</string>
+    <string name="improv_edit_error_negative_duration">Scott Bakula n\'est pas dispo. Il faudra une durée positive (en secondes) à cette impro&#8230;</string>
     
 </resources>

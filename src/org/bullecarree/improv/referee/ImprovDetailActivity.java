@@ -1,7 +1,9 @@
 package org.bullecarree.improv.referee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bullecarree.improv.db.ImprovDbTable;
-import org.bullecarree.improv.model.Improv;
 import org.bullecarree.improv.model.ImprovType;
 import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
 
@@ -36,6 +38,8 @@ public class ImprovDetailActivity extends Activity {
 
     private EditText mDurationText;
 
+    private ArrayAdapter mTypeAdapter;
+    
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -43,10 +47,10 @@ public class ImprovDetailActivity extends Activity {
         setContentView(R.layout.improv_edit);
 
         mTypeSpinner = (Spinner) findViewById(R.id.improv_edit_type);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this,
+        mTypeAdapter = ArrayAdapter.createFromResource(this,
                 R.array.improv_type, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mTypeSpinner.setAdapter(adapter);
+        mTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mTypeSpinner.setAdapter(mTypeAdapter);
 
         mTitleText = (EditText) findViewById(R.id.improv_edit_title);
 
@@ -81,14 +85,15 @@ public class ImprovDetailActivity extends Activity {
 
                 if (title == null || "".equals(title)) {
                     Toast.makeText(ImprovDetailActivity.this,
-                            "Please give a title", Toast.LENGTH_LONG).show();
+                            R.string.improv_edit_error_no_title
+                            , Toast.LENGTH_LONG).show();
                 } else if (playerCount.intValue() < 0) {
                     Toast.makeText(ImprovDetailActivity.this,
-                            "Please provide a positive player count",
+                            R.string.improv_edit_error_negative_player_count,
                             Toast.LENGTH_LONG).show();
                 } else if (duration == null || duration.intValue() <= 0) {
                     Toast.makeText(ImprovDetailActivity.this,
-                            "Please provide a positive duration in seconds",
+                            R.string.improv_edit_error_negative_duration,
                             Toast.LENGTH_LONG).show();
                 } else {
                     setResult(RESULT_OK);
@@ -129,12 +134,19 @@ public class ImprovDetailActivity extends Activity {
             cursor.moveToFirst();
             String type = cursor.getString(cursor
                     .getColumnIndexOrThrow(ImprovDbTable.COL_TYPE));
-            for (int i = 0; i < mTypeSpinner.getCount(); i++) {
-                String s = (String) mTypeSpinner.getItemAtPosition(i);
-                if (s.equalsIgnoreCase(type)) {
-                    mTypeSpinner.setSelection(i);
-                }
+            if (type == ImprovType.MIXT.toString()) {
+                mTypeSpinner.setSelection(0);
+            } else {
+                mTypeSpinner.setSelection(1);
             }
+//            
+//            
+//            for (int i = 0; i < mTypeSpinner.getCount(); i++) {
+//                String s = (String) mTypeSpinner.getItemAtPosition(i);
+//                if (s.equalsIgnoreCase(type)) {
+//                    mTypeSpinner.setSelection(i);
+//                }
+//            }
 
             mTitleText.setText(cursor.getString(cursor
                     .getColumnIndexOrThrow(ImprovDbTable.COL_TITLE)));
@@ -206,9 +218,12 @@ public class ImprovDetailActivity extends Activity {
 
         String title = getImprovTitle();
 
-        // FIXME(pht) probably a bad way to deal with an enum...
         String type = ImprovType.MIXT.toString();
-        if ("Compared".equals(mTypeSpinner.getSelectedItem().toString())) {
+        
+        String spinnerString = mTypeSpinner.getSelectedItem().toString();
+        String comparedText =getString(R.string.typeCompared); 
+        
+        if (comparedText.equals(spinnerString)) {
             type = ImprovType.COMPARED.toString();
         }
 

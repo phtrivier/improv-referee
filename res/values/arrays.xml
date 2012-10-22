@@ -1,8 +1,8 @@
 <resources>
 
     <string-array name="improv_type">
-        <item>Mixte</item>
-        <item>Compée</item>
+        <item>@string/typeMixt</item>
+        <item>@string/typeCompared</item>
     </string-array>
     
 </resources>
