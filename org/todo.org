@@ -1,35 +1,6 @@
-* stuff to study 
-
-** app life cycle (Intent stuff)
-** db ? 
-** form validation
-** 
-* V2 (Improv's list)
-** Store the list in a db instead of the sd card (a bit complicated)
- - [ ] ContentProvider stuff ... see http://www.vogella.de/articles/AndroidSQLite/article.html
-** Create an improv editor
-*** Menu basics
- - [X] Adding a menu
- - [X] Adding an entry to "Create" a new improv
-*** [X] Adding an activity to fill an improv (like the detail activity)
- - [X] When saved, check the activity appears in the list
-*** Edition menu 
- - [X] Clicking on an entry should edit it (go back to the acitivty)
- - [X] Pass the edited improv
- - [X] Fill the data
- - [X] When save, edit and go back to the list
-** Navigate to 'game' view (with the same content provider in readable state ?) and back to list
-** At this point, test on actual device !!! And try and write a list of improvs
-** Possibility to delete a note (or clear out everything)
-** Change the 'seconds' editor to something more usable
-** Change orientation of the screen based on content
-** Add 'cancel' button in edit screen
-* (Improvements)
-** gesture to navigate between improvs (instead of / as a complement to the buttons)
-** vibration / visual alerts when milestones of the improv are reached (2', 1', 30', 10')
-** variable durations for caucuses
-* Various stuff
-** Add the MIT license headers to all files (a script probably exists for that)
-** Remove the org.bullecarree stuff..
-** Rename classes, put the app on the damn android store !
-** Use android conventsion (mRect, etc...) ?
+* Release 1.0 stuff to do
+- Use a spinner for the Duration of the improv
+- Document the app and add it to the Android Store
+ - screenshot list / preparation / in-game
+ - small text to explain what the app does
+ - mention MIT License and link to source somewhere
