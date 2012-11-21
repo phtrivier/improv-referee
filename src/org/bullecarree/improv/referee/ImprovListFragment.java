@@ -33,7 +33,7 @@ public class ImprovListFragment extends ListFragment implements
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        setEmptyText("No improvs. Open the menu and click 'Add' to create a new improv.");
+        setEmptyText(getString(R.string.improv_list_no_improv));
 
         // Fields from the database (projection)
         String[] from = new String[] { ImprovDbTable.COL_TITLE };

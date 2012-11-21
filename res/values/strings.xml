@@ -38,4 +38,11 @@
     <string name="improv_edit_error_negative_player_count">Ne soyez pas timide, il faut au moins un joueur sur scène !</string>
     <string name="improv_edit_error_negative_duration">Scott Bakula n\'est pas dispo. Il faudra une durée positive (en secondes) à cette impro&#8230;</string>
     
+    <string name="improv_list_no_improv">Il n\'y a pas d\'impro définie pour le moment. Ouvrez le menu, et cliquez sur \'Ajouter\'</string>
+    <string name="improv_list_add">Ajouter</string>
+    <string name="improv_list_add_long">Ajouter une impro</string>
+    
+    <string name="improv_list_play">Jouer</string>
+    <string name="improv_list_play_long">Jouer le match</string>
+    
 </resources>

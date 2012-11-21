@@ -1,5 +1,5 @@
 
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:id="@+id/list_menu_add_improv" android:titleCondensed="Add" android:alphabeticShortcut="A" android:title="Add improv"></item>
-        <item android:id="@+id/list_menu_play_game" android:titleCondensed="Play" android:alphabeticShortcut="P" android:title="Play game"></item>
+        <item android:id="@+id/list_menu_add_improv" android:titleCondensed="@string/improv_list_add" android:alphabeticShortcut="A" android:title="@string/improv_list_add_long"></item>
+        <item android:id="@+id/list_menu_play_game" android:titleCondensed="@string/improv_list_play" android:alphabeticShortcut="P" android:title="@string/improv_list_play_long"></item>
     </menu>
