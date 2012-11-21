@@ -1,10 +1,10 @@
-package org.bullecarree.improv.referee.contentprovider;
+package fr.pht.improv.referee.contentprovider;
 
 import java.util.Arrays;
 import java.util.HashSet;
 
-import org.bullecarree.improv.db.ImprovDbHelper;
-import org.bullecarree.improv.db.ImprovDbTable;
+import fr.pht.improv.db.ImprovDbHelper;
+import fr.pht.improv.db.ImprovDbTable;
 
 import android.content.ContentProvider;
 import android.content.ContentResolver;
@@ -22,7 +22,7 @@ public class ImprovContentProvider extends ContentProvider {
     private static final int IMPROVS = 10;
     private static final int IMPROV_ID = 20;
 
-    private static final String AUTHORITY = "org.bullecarre.improvs.contentprovider";
+    private static final String AUTHORITY = "fr.pht.improvs.contentprovider";
 
     private static final String BASE_PATH = "improvs";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY

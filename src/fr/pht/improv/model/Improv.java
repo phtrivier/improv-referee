@@ -1,4 +1,4 @@
-package org.bullecarree.improv.model;
+package fr.pht.improv.model;
 
 public class Improv {
     private ImprovType type;

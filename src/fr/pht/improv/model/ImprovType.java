@@ -1,4 +1,4 @@
-package org.bullecarree.improv.model;
+package fr.pht.improv.model;
 
 public enum ImprovType {
     MIXT, COMPARED

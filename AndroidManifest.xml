@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.bullecarree.improv.referee"
+    package="fr.pht.improv.referee"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -29,7 +29,7 @@
 
         <provider
             android:name=".contentprovider.ImprovContentProvider"
-            android:authorities="org.bullecarre.improvs.contentprovider" >
+            android:authorities="fr.pht.improvs.contentprovider" >
         </provider>
 
         <activity

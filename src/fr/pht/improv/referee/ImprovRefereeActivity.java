@@ -1,11 +1,13 @@
-package org.bullecarree.improv.referee;
+package fr.pht.improv.referee;
 
 import java.io.IOException;
 
-import org.bullecarree.improv.model.Improv;
-import org.bullecarree.improv.model.ImprovRenderer;
-import org.bullecarree.improv.model.ImprovType;
-import org.bullecarree.improv.reader.ImprovDatabaseReader;
+import fr.pht.improv.referee.R;
+
+import fr.pht.improv.model.Improv;
+import fr.pht.improv.model.ImprovRenderer;
+import fr.pht.improv.model.ImprovType;
+import fr.pht.improv.reader.ImprovDatabaseReader;
 
 import android.app.Activity;
 import android.content.IntentSender.OnFinished;

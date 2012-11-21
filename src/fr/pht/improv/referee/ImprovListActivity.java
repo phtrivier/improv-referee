@@ -1,4 +1,6 @@
-package org.bullecarree.improv.referee;
+package fr.pht.improv.referee;
+
+import fr.pht.improv.referee.R;
 
 import android.content.Intent;
 import android.net.Uri;

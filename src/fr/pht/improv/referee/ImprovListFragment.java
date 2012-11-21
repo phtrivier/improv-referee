@@ -1,9 +1,11 @@
-package org.bullecarree.improv.referee;
+package fr.pht.improv.referee;
 
-import org.bullecarree.improv.db.ImprovDbTable;
-import org.bullecarree.improv.model.ImprovRenderer;
-import org.bullecarree.improv.model.ImprovType;
-import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
+import fr.pht.improv.referee.R;
+
+import fr.pht.improv.db.ImprovDbTable;
+import fr.pht.improv.model.ImprovRenderer;
+import fr.pht.improv.model.ImprovType;
+import fr.pht.improv.referee.contentprovider.ImprovContentProvider;
 
 import android.content.Context;
 import android.content.Intent;

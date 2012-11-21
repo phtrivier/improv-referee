@@ -1,4 +1,4 @@
-package org.bullecarree.improv.referee;
+package fr.pht.improv.referee;
 
 import java.util.ArrayList;
 import java.util.List;

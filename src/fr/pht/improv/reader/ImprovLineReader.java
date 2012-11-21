@@ -1,11 +1,12 @@
-package org.bullecarree.improv.reader;
+package fr.pht.improv.reader;
 
 import java.io.IOException;
 
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVUtils;
-import org.bullecarree.improv.model.Improv;
-import org.bullecarree.improv.model.ImprovType;
+
+import fr.pht.improv.model.Improv;
+import fr.pht.improv.model.ImprovType;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package org.bullecarree.improv.reader;
+package fr.pht.improv.reader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,10 +8,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bullecarree.improv.db.ImprovDbTable;
-import org.bullecarree.improv.model.Improv;
-import org.bullecarree.improv.model.ImprovType;
-import org.bullecarree.improv.referee.contentprovider.ImprovContentProvider;
+import fr.pht.improv.db.ImprovDbTable;
+import fr.pht.improv.model.Improv;
+import fr.pht.improv.model.ImprovType;
+import fr.pht.improv.referee.contentprovider.ImprovContentProvider;
 
 import android.content.ContentResolver;
 import android.content.Context;

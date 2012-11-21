@@ -1,4 +1,4 @@
-package org.bullecarree.improv.db;
+package fr.pht.improv.db;
 
 import java.util.Arrays;
 
