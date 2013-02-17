@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Improv referee</string>
+    <string name="btnCaucus">Caucus</string>
+    <string name="btnImprov">Game on !</string>
+    <string name="btnPause">Pause</string>
+    <string name="btnReset">Reset</string>
+    <string name="btnPrevImprov">&lt;&lt;</string>
+    <string name="btnNextImprov">&gt;&gt;</string>
+    <string name="titleCategory">Category</string>
+    <string name="titleDuration">Duration</string>
+    <string name="titlePlayerCount">Players</string>
+    <string name="titleTitle">Title</string>
+    <string name="titleType">Type</string>
+    <string name="typeCompared">Compared</string>
+    <string name="typeMixt">Mixt</string>
+    <string name="unlimited">Unl.</string>
+    <string name="categoryFree">Free</string>
+    <!--  FIXME (why is a quote refused ?) -->
+    <string name="list_no_improvs">None</string>
+    <!-- Edition -->
+    <string name="improv_edit_type">Type</string>
+    <string name="improv_edit_title">Title</string>
+    <string name="improv_edit_category">Category</string>
+    <string name="improv_edit_duration">Duration (seconds)</string>
+    <string name="improv_edit_player_count">Players</string>
+    
+    <string name="improv_edit_save">Save</string>
+    <string name="improv_edit_delete">Delete</string>
+    
+    <string name="improv_edit_confirm_delete_title">Confirm</string>
+    <string name="improv_edit_confirm_delete_message">Do you really want to delete this improv ?</string>
+    
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    
+    <string name="improv_edit_error_no_title">This improv needs a title !</string>
+    <string name="improv_edit_error_negative_player_count">Don\'t be shy, your scene needs at least one player !</string>
+    <string name="improv_edit_error_negative_duration">Scott Bakula is busy. This improv will need a positive duration&#8230;</string>
+    
+    <string name="improv_list_no_improv">No improv defined. Open the menu, et click \'Add\'</string>
+    <string name="improv_list_add">Add</string>
+    <string name="improv_list_add_long">Add an improv</string>
+    
+    <string name="improv_list_play">Play</string>
+    <string name="improv_list_play_long">Start the game</string>
+    
+</resources>

@@ -12,7 +12,9 @@ import fr.pht.improv.reader.ImprovDatabaseReader;
 import android.app.Activity;
 import android.content.IntentSender.OnFinished;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
@@ -50,6 +52,8 @@ public class ImprovRefereeActivity extends Activity {
 
     private TextView barTimeMessage;
 
+    private Vibrator vibrator;
+    
     private enum State {
         NONE, CAUCUS, CAUCUS_PAUSED, GAME, GAME_PAUSED
     };
@@ -82,7 +86,9 @@ public class ImprovRefereeActivity extends Activity {
         setContentView(R.layout.main);
 
         // Disable screen saver
-        // getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
+        getWindow().addFlags(LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
+        vibrator = (Vibrator) getSystemService(getApplicationContext().VIBRATOR_SERVICE);
         
         renderer = new ImprovRenderer(getString(R.string.typeCompared),
                 getString(R.string.typeMixt), getString(R.string.unlimited),
@@ -131,7 +137,7 @@ public class ImprovRefereeActivity extends Activity {
 
         ProgressListener updateProgressBar = new ProgressListener() {
             public void onTick(int progress, long elapsedTimeMillis) {
-                updateBarTime(progress, elapsedTimeMillis);
+                updateRemainingTime(progress, elapsedTimeMillis);
             };
         };
 
@@ -146,7 +152,7 @@ public class ImprovRefereeActivity extends Activity {
                 int caucusProgress = savedInstanceState.getInt(IMPROV_CAUCUS_PROGRESS);
                 long caucusElapsedTime = savedInstanceState.getLong(IMPROV_CAUCUS_ELAPSED_TIME);
                 caucusTimer.forceElapsedTime(caucusElapsedTime);
-                updateBarTime(caucusProgress, caucusElapsedTime);
+                updateRemainingTime(caucusProgress, caucusElapsedTime);
                 if (state == State.CAUCUS) {
                     caucusTimer.resume();
                 }
@@ -154,7 +160,7 @@ public class ImprovRefereeActivity extends Activity {
                 int improvProgress = savedInstanceState.getInt(IMPROV_IMPROV_PROGRESS);
                 long improvElapsedTime = savedInstanceState.getLong(IMPROV_IMPROV_ELAPSED_TIME);
                 improvTimer.forceElapsedTime(improvElapsedTime);
-                updateBarTime(improvProgress, improvElapsedTime);
+                updateRemainingTime(improvProgress, improvElapsedTime);
                 if (state == State.GAME) {
                     improvTimer.resume();
                 }
@@ -163,7 +169,7 @@ public class ImprovRefereeActivity extends Activity {
         
     }
 
-    private void updateBarTime(int progress, long elapsedTimeMillis) {
+    private void updateRemainingTime(int progress, long elapsedTimeMillis) {
         barTimeProgress.setProgress(progress);
 
         long remainingMs = 0;
@@ -177,6 +183,17 @@ public class ImprovRefereeActivity extends Activity {
         int remainingS = (int) remainingMs / 1000;
         
         barTimeMessage.setText(renderer.displayTime(remainingS));
+        
+        if (remainingS == 0) {
+            vibrator.vibrate(new long[]{0, 300, 200,300, 200, 300, 200}, -1);
+        } else if (remainingS == 10) {
+            vibrator.vibrate(new long[]{0, 300, 200,300, 200}, -1);
+        } else if (remainingS == 30) {
+            vibrator.vibrate(new long[]{0, 300, 200}, -1);
+        } else if (remainingS % 60 == 0) {
+            vibrator.vibrate(300);
+        } 
+        
     }
     
     private void configureNavigation() {
